@@ -1,0 +1,8 @@
+{
+  "id": "skip-none",
+  "prompt": "total(items) crashes when the list contains None. Make it sum the numbers and skip any None values.",
+  "grade": {
+    "type": "command",
+    "cmd": "python3 -c \"import sys; sys.path.insert(0, '.'); from totals import total; assert total([1,None,2,None,3])==6 and total([5])==5\""
+  }
+}

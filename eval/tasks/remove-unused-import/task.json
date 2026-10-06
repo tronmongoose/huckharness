@@ -1,0 +1,5 @@
+{
+  "id": "remove-unused-import",
+  "prompt": "In the working directory, the file widget.py imports a module it never uses, so it fails lint. Remove the unused import line. Do not change any other behavior.",
+  "grade": { "type": "ruff_clean", "target": "widget.py" }
+}

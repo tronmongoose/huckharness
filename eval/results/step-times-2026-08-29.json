@@ -1,0 +1,183 @@
+{
+  "sessions": 192,
+  "steps_completed": 398,
+  "percentiles_s": {
+    "n": 398,
+    "p50": 30.909273,
+    "p90": 131.586639,
+    "p99": 175.663345,
+    "max": 186.911644
+  },
+  "over_120s": 51,
+  "over_180s": 1,
+  "timeouts": [
+    {
+      "session": "20260822T223017-8844aaaf",
+      "turn": 3,
+      "ts": "2026-08-22T22:37:27.792051+00:00",
+      "step_seconds": 180.005021,
+      "overlap": 1,
+      "overlapping_sessions": [
+        "20260822T223655-3c9f9d6f"
+      ]
+    },
+    {
+      "session": "20260822T223027-98b754df",
+      "turn": 2,
+      "ts": "2026-08-22T22:35:39.292655+00:00",
+      "step_seconds": 180.003513,
+      "overlap": 1,
+      "overlapping_sessions": [
+        "20260822T223017-8844aaaf"
+      ]
+    },
+    {
+      "session": "20260823T013018-2247e215",
+      "turn": 4,
+      "ts": "2026-08-23T01:41:43.642447+00:00",
+      "step_seconds": 180.05791,
+      "overlap": 1,
+      "overlapping_sessions": [
+        "20260823T013030-94689c5d"
+      ]
+    },
+    {
+      "session": "20260823T013030-94689c5d",
+      "turn": 15,
+      "ts": "2026-08-23T01:56:07.094956+00:00",
+      "step_seconds": 180.003547,
+      "overlap": 0,
+      "overlapping_sessions": []
+    },
+    {
+      "session": "20260823T014311-254da160",
+      "turn": 6,
+      "ts": "2026-08-23T01:54:33.363455+00:00",
+      "step_seconds": 180.069399,
+      "overlap": 1,
+      "overlapping_sessions": [
+        "20260823T013030-94689c5d"
+      ]
+    },
+    {
+      "session": "20260823T163018-ab625dc6",
+      "turn": 7,
+      "ts": "2026-08-23T16:43:40.995106+00:00",
+      "step_seconds": 179.994385,
+      "overlap": 1,
+      "overlapping_sessions": [
+        "20260823T163107-ed9a9533"
+      ]
+    },
+    {
+      "session": "20260823T163107-ed9a9533",
+      "turn": 7,
+      "ts": "2026-08-23T16:44:23.791182+00:00",
+      "step_seconds": 179.993816,
+      "overlap": 0,
+      "overlapping_sessions": []
+    },
+    {
+      "session": "20260823T164436-f67036a0",
+      "turn": 8,
+      "ts": "2026-08-23T16:57:38.966779+00:00",
+      "step_seconds": 180.005986,
+      "overlap": 1,
+      "overlapping_sessions": [
+        "20260823T165238-1eafb3e6"
+      ]
+    },
+    {
+      "session": "20260823T165238-1eafb3e6",
+      "turn": 9,
+      "ts": "2026-08-23T17:05:32.672422+00:00",
+      "step_seconds": 180.00354,
+      "overlap": 1,
+      "overlapping_sessions": [
+        "20260823T165913-2b99ca28"
+      ]
+    },
+    {
+      "session": "20260823T165913-2b99ca28",
+      "turn": 4,
+      "ts": "2026-08-23T17:05:52.035659+00:00",
+      "step_seconds": 180.230905,
+      "overlap": 0,
+      "overlapping_sessions": []
+    },
+    {
+      "session": "20260828T164441-5601438b",
+      "turn": 5,
+      "ts": "2026-08-28T16:56:59.457789+00:00",
+      "step_seconds": 180.004928,
+      "overlap": 1,
+      "overlapping_sessions": [
+        "20260828T164537-259a844f"
+      ]
+    },
+    {
+      "session": "20260828T164537-259a844f",
+      "turn": 5,
+      "ts": "2026-08-28T16:58:11.886571+00:00",
+      "step_seconds": 180.006276,
+      "overlap": 0,
+      "overlapping_sessions": []
+    },
+    {
+      "session": "20260828T165820-f5646132",
+      "turn": 2,
+      "ts": "2026-08-28T17:02:59.840312+00:00",
+      "step_seconds": 179.987252,
+      "overlap": 0,
+      "overlapping_sessions": []
+    },
+    {
+      "session": "20260828T193828-769a9ff5",
+      "turn": 3,
+      "ts": "2026-08-28T19:45:33.401808+00:00",
+      "step_seconds": 180.00552,
+      "overlap": 1,
+      "overlapping_sessions": [
+        "20260828T194034-4cb414a6"
+      ]
+    },
+    {
+      "session": "20260828T194612-addcae9c",
+      "turn": 5,
+      "ts": "2026-08-28T19:57:03.100618+00:00",
+      "step_seconds": 179.985572,
+      "overlap": 1,
+      "overlapping_sessions": [
+        "20260828T194714-5141454c"
+      ]
+    },
+    {
+      "session": "20260828T194714-5141454c",
+      "turn": 5,
+      "ts": "2026-08-28T19:58:12.562620+00:00",
+      "step_seconds": 180.004149,
+      "overlap": 0,
+      "overlapping_sessions": []
+    },
+    {
+      "session": "20260829T014154-c4a9135f",
+      "turn": 5,
+      "ts": "2026-08-29T01:52:50.763449+00:00",
+      "step_seconds": 180.057863,
+      "overlap": 1,
+      "overlapping_sessions": [
+        "20260829T014303-10efffde"
+      ]
+    },
+    {
+      "session": "20260829T014303-10efffde",
+      "turn": 5,
+      "ts": "2026-08-29T01:54:03.905236+00:00",
+      "step_seconds": 180.005309,
+      "overlap": 0,
+      "overlapping_sessions": []
+    }
+  ],
+  "timeouts_with_overlap": 11,
+  "since": "2026-08-20"
+}

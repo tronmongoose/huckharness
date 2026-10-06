@@ -1,0 +1,33 @@
+__pycache__/
+*.pyc
+# No trailing slash: a bare `.venv/` matches directories only, so a worktree's
+# .venv *symlink* slipped past it and got committed, repointing make test at
+# another venv's interpreter.
+.venv
+.venv*
+venv
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+node_modules/
+coding_harness/ui/dist/
+# Agent-spawned worktrees; git tracks them in .git/worktrees, not the tree.
+.claude/worktrees/
+# Eval scratch: run logs and usage dumps. The pinned baseline.json, its
+# interim twin (eval/test_run.py asserts exactly one per pin) and the
+# benchmark reports stay tracked.
+eval/results/*.log
+eval/results/claude-usage-*.json
+# Secrets and local state never belong in the tree.
+.env
+.env.*
+*.pem
+*.key
+*.jsonl
+*.db
+*.sqlite
+.DS_Store
+.claude/settings.local.json
+.claude/settings.json

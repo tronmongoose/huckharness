@@ -1,0 +1,14 @@
+bjorn-harness
+Copyright 2026 The bjorn-harness Authors
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Third-party material distributed with a built UI (coding_harness/ui/dist):
+
+- Fraunces variable font. Copyright 2020 The Fraunces Project Authors
+  (github.com/undercasetype/Fraunces). SIL Open Font License 1.1.
+- JetBrains Mono variable font. Copyright 2020 The JetBrains Mono Project
+  Authors (github.com/JetBrains/JetBrainsMono). SIL Open Font License 1.1.
+
+The full OFL text ships in each font's npm package under
+coding_harness/ui/node_modules/@fontsource-variable/.

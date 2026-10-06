@@ -1,0 +1,77 @@
+{
+  "schema": 2,
+  "model": "default-local",
+  "tasks": 11,
+  "resolved": 9,
+  "repeats": 3,
+  "slack": 1,
+  "pinned": "2026-10-04",
+  "interim": true,
+  "note": "throwaway pin after phase 0; re-pinned by P2-1",
+  "fingerprint": {
+    "harness_sha": "a5b3700fcb4d052d1ba0d0267ba279d05d048dc4",
+    "harness_dirty": false,
+    "python": "3.14.7",
+    "ollama_version": "0.34.4",
+    "model": "mistral-small3.2:latest",
+    "model_digest": "modelfile-sha256:5c7d0a3fc5527c9849165248adcc86f1bfa1239e48857718f40599c8d0746145",
+    "profile_hash": "03697f6cda48"
+  },
+  "per_task": {
+    "add-sub": {
+      "passes": 3,
+      "runs": 3,
+      "must_pass": true
+    },
+    "buried-bug": {
+      "passes": 2,
+      "runs": 3,
+      "must_pass": false
+    },
+    "dedup-order": {
+      "passes": 3,
+      "runs": 3,
+      "must_pass": true
+    },
+    "fix-add-bug": {
+      "passes": 3,
+      "runs": 3,
+      "must_pass": true
+    },
+    "implement-palindrome": {
+      "passes": 2,
+      "runs": 3,
+      "must_pass": false
+    },
+    "mutable-default": {
+      "passes": 1,
+      "runs": 3,
+      "must_pass": false
+    },
+    "off-by-one": {
+      "passes": 3,
+      "runs": 3,
+      "must_pass": true
+    },
+    "remove-unused-import": {
+      "passes": 3,
+      "runs": 3,
+      "must_pass": true
+    },
+    "safe-get": {
+      "passes": 3,
+      "runs": 3,
+      "must_pass": true
+    },
+    "skip-none": {
+      "passes": 3,
+      "runs": 3,
+      "must_pass": true
+    },
+    "two-file-change": {
+      "passes": 1,
+      "runs": 3,
+      "must_pass": false
+    }
+  }
+}

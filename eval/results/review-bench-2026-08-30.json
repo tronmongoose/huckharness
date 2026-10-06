@@ -1,0 +1,1549 @@
+{
+ "date": "2026-08-30",
+ "models": {
+  "granite4.1:8b": {
+   "score": {
+    "rows": 53,
+    "answered": 53,
+    "agreement": 0.453,
+    "fail_recall": 0.396,
+    "n_fail": 48,
+    "false_fail_rate": 0.0,
+    "n_pass": 5,
+    "always_fail_agreement": 0.906,
+    "median_seconds": 5.0
+   },
+   "verdicts": [
+    {
+     "pr": 4,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 31.6,
+     "error": null
+    },
+    {
+     "pr": 1,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 11.3,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 5.9,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.7,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 5.7,
+     "error": null
+    },
+    {
+     "pr": 2,
+     "opus": "PASS",
+     "local": "PASS",
+     "seconds": 11.1,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 2.0,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.5,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.5,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 6.0,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 13.6,
+     "error": null
+    },
+    {
+     "pr": 1,
+     "opus": "PASS",
+     "local": "PASS",
+     "seconds": 13.1,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 16.5,
+     "error": null
+    },
+    {
+     "pr": 5,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 8.3,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 6.5,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.9,
+     "error": null
+    },
+    {
+     "pr": 10,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 2.8,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 6.6,
+     "error": null
+    },
+    {
+     "pr": 4,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 8.2,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 6.8,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.5,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.5,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.9,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.5,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.5,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.5,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.4,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "PASS",
+     "local": "PASS",
+     "seconds": 18.7,
+     "error": null
+    },
+    {
+     "pr": 10,
+     "opus": "PASS",
+     "local": "PASS",
+     "seconds": 2.8,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.9,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 5.7,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.9,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.0,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 5.0,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.5,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.9,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 6.4,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.9,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.5,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 5.8,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.9,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 5.7,
+     "error": null
+    },
+    {
+     "pr": 4,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 12.6,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.6,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.5,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.0,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 10.7,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 6.7,
+     "error": null
+    },
+    {
+     "pr": 10,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 2.7,
+     "error": null
+    },
+    {
+     "pr": 4,
+     "opus": "PASS",
+     "local": "PASS",
+     "seconds": 13.9,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 5.7,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.9,
+     "error": null
+    }
+   ]
+  },
+  "granite4.2:8b": {
+   "score": {
+    "rows": 53,
+    "answered": 19,
+    "agreement": 0.158,
+    "fail_recall": 0.0,
+    "n_fail": 48,
+    "false_fail_rate": 0.0,
+    "n_pass": 5,
+    "always_fail_agreement": 0.906,
+    "median_seconds": 1.4
+   },
+   "verdicts": [
+    {
+     "pr": 4,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 18.8,
+     "error": null
+    },
+    {
+     "pr": 1,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 12.5,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.5,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.6,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.4,
+     "error": null
+    },
+    {
+     "pr": 2,
+     "opus": "PASS",
+     "local": "PASS",
+     "seconds": 11.9,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 0.7,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 0.4,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 0.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.4,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 14.9,
+     "error": null
+    },
+    {
+     "pr": 1,
+     "opus": "PASS",
+     "local": null,
+     "seconds": 12.5,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 18.4,
+     "error": null
+    },
+    {
+     "pr": 5,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 9.6,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.4,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 2.6,
+     "error": null
+    },
+    {
+     "pr": 10,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.9,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.4,
+     "error": null
+    },
+    {
+     "pr": 4,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 9.6,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 0.1,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 0.1,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 0.1,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 1.6,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 0.4,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 2.1,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 0.4,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 0.4,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "PASS",
+     "local": "PASS",
+     "seconds": 21.1,
+     "error": null
+    },
+    {
+     "pr": 10,
+     "opus": "PASS",
+     "local": null,
+     "seconds": 1.8,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 2.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.4,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 0.7,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 0.1,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 0.1,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 2.0,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.4,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 0.7,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 0.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.4,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 2.0,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.4,
+     "error": null
+    },
+    {
+     "pr": 4,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 13.8,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 2.0,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 0.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.4,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 12.1,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.4,
+     "error": null
+    },
+    {
+     "pr": 10,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.8,
+     "error": null
+    },
+    {
+     "pr": 4,
+     "opus": "PASS",
+     "local": "PASS",
+     "seconds": 15.9,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.4,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 0.7,
+     "error": null
+    }
+   ]
+  },
+  "gpt-oss:20b": {
+   "score": {
+    "rows": 53,
+    "answered": 16,
+    "agreement": 1.0,
+    "fail_recall": 0.333,
+    "n_fail": 48,
+    "false_fail_rate": 0.0,
+    "n_pass": 5,
+    "always_fail_agreement": 0.906,
+    "median_seconds": 8.8
+   },
+   "verdicts": [
+    {
+     "pr": 4,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 20.7,
+     "error": null
+    },
+    {
+     "pr": 1,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 15.7,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 11.1,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.1,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 11.1,
+     "error": null
+    },
+    {
+     "pr": 2,
+     "opus": "PASS",
+     "local": null,
+     "seconds": 5.5,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.4,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 8.9,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 6.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 2.6,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 16.8,
+     "error": null
+    },
+    {
+     "pr": 1,
+     "opus": "PASS",
+     "local": null,
+     "seconds": 16.3,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 18.2,
+     "error": null
+    },
+    {
+     "pr": 5,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 4.7,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 11.2,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 10.5,
+     "error": null
+    },
+    {
+     "pr": 10,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 1.7,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 2.9,
+     "error": null
+    },
+    {
+     "pr": 4,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 14.0,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 2.5,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 2.8,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 3.6,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 2.9,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 10.8,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.2,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 4.7,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 6.5,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 8.9,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "PASS",
+     "local": null,
+     "seconds": 19.3,
+     "error": null
+    },
+    {
+     "pr": 10,
+     "opus": "PASS",
+     "local": null,
+     "seconds": 11.6,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 8.1,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 11.1,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 8.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 11.2,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 3.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 10.6,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 8.0,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 4.2,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 5.6,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.5,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 11.2,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 11.8,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 2.7,
+     "error": null
+    },
+    {
+     "pr": 4,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 16.1,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 8.8,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 8.0,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 11.1,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 15.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 11.1,
+     "error": null
+    },
+    {
+     "pr": 10,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 11.2,
+     "error": null
+    },
+    {
+     "pr": 4,
+     "opus": "PASS",
+     "local": null,
+     "seconds": 16.6,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 3.6,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 8.4,
+     "error": null
+    }
+   ]
+  },
+  "mistral-small3.2:latest": {
+   "score": {
+    "rows": 53,
+    "answered": 53,
+    "agreement": 0.811,
+    "fail_recall": 0.792,
+    "n_fail": 48,
+    "false_fail_rate": 0.0,
+    "n_pass": 5,
+    "always_fail_agreement": 0.906,
+    "median_seconds": 7.0
+   },
+   "verdicts": [
+    {
+     "pr": 4,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 45.3,
+     "error": null
+    },
+    {
+     "pr": 1,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 30.6,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.2,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.9,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.0,
+     "error": null
+    },
+    {
+     "pr": 2,
+     "opus": "PASS",
+     "local": "PASS",
+     "seconds": 27.1,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.9,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.0,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.2,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.0,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 33.6,
+     "error": null
+    },
+    {
+     "pr": 1,
+     "opus": "PASS",
+     "local": "PASS",
+     "seconds": 31.6,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 40.1,
+     "error": null
+    },
+    {
+     "pr": 5,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 21.6,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.0,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.9,
+     "error": null
+    },
+    {
+     "pr": 10,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 6.6,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.0,
+     "error": null
+    },
+    {
+     "pr": 4,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 21.9,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.0,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 3.5,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.4,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.9,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 3.8,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 3.8,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 3.8,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 3.8,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "PASS",
+     "local": "PASS",
+     "seconds": 45.8,
+     "error": null
+    },
+    {
+     "pr": 10,
+     "opus": "PASS",
+     "local": "PASS",
+     "seconds": 7.2,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.9,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.0,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.9,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.0,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 3.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.4,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.9,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.9,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.9,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 3.8,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.0,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.9,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.0,
+     "error": null
+    },
+    {
+     "pr": 4,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 32.3,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.9,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 3.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.0,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 27.3,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.0,
+     "error": null
+    },
+    {
+     "pr": 10,
+     "opus": "FAIL",
+     "local": "PASS",
+     "seconds": 7.1,
+     "error": null
+    },
+    {
+     "pr": 4,
+     "opus": "PASS",
+     "local": "PASS",
+     "seconds": 35.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 7.0,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 4.9,
+     "error": null
+    }
+   ]
+  }
+ }
+}

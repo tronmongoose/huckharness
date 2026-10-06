@@ -1,0 +1,7 @@
+scripts:
+  setup: |
+    python3 -m venv "${ORCA_WORKTREE_PATH}/.venv"
+    "${ORCA_WORKTREE_PATH}/.venv/bin/pip" install -q --upgrade pip
+    "${ORCA_WORKTREE_PATH}/.venv/bin/pip" install -q -e "${ORCA_WORKTREE_PATH}[dev]"
+issueCommand: |
+  Complete {{artifact_url}}. Run make test before finishing.

@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bjorn-harness"
+version = "0.1.0"
+description = "Local-first, security-gated coding-agent harness on Ollama."
+readme = "README.md"
+license = {text = "Apache-2.0"}
+authors = [{name = "The bjorn-harness Authors"}]
+requires-python = ">=3.9"
+# No third-party runtime dependencies: stdlib only. A deployment may provide
+# an optional routing/cost layer as a `pipelines` package on PYTHONPATH; the
+# harness stays local-only when it is absent.
+dependencies = []
+
+[project.scripts]
+bjorn = "coding_harness.cli:main"
+bjorn-migrate-memory = "coding_harness.tools.migrate_claude_memory:main"
+
+[project.optional-dependencies]
+# yaml is an optional runtime dep (four lazy imports; the package degrades
+# without it) but the suite asserts the yaml-present branches, so a clean
+# `pip install -e '.[dev]'` must supply it or make test is red.
+dev = ["pytest", "ruff", "pynacl", "pyyaml"]
+# What the optional in-process second-brain backend (slos_recall) needs.
+# The library itself is a separate package: `make brain-install`.
+brain = ["numpy>=2.0", "pyyaml>=6"]
+
+[tool.setuptools.packages.find]
+include = ["coding_harness*"]
+
+# The built GUI bundle ships with a non-editable install when it exists.
+# `make ui` builds it; it is not committed.
+[tool.setuptools.package-data]
+coding_harness = ["ui/dist/**/*"]
+
+[tool.ruff.lint]
+select = ["F", "I", "UP", "B", "E", "W"]
+ignore = ["E501"]

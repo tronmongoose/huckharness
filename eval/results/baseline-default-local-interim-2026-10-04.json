@@ -1,0 +1,866 @@
+{
+  "model": "default-local",
+  "model_tag": "mistral-small3.2:latest",
+  "repeats": 3,
+  "review": "off",
+  "date": "2026-10-04",
+  "fingerprint": {
+    "harness_sha": "a5b3700fcb4d052d1ba0d0267ba279d05d048dc4",
+    "harness_dirty": false,
+    "python": "3.14.7",
+    "ollama_version": "0.34.4",
+    "model": "mistral-small3.2:latest",
+    "model_digest": "modelfile-sha256:5c7d0a3fc5527c9849165248adcc86f1bfa1239e48857718f40599c8d0746145",
+    "profile_hash": "03697f6cda48"
+  },
+  "rows": [
+    {
+      "id": "add-sub",
+      "resolved": true,
+      "passes": 3,
+      "runs": 3,
+      "steps": 3,
+      "detail": "",
+      "wall_s": 55.0,
+      "edit_errors": 1,
+      "bash_errors_harness": 0,
+      "repair_rounds": 0,
+      "per_run": [
+        {
+          "tool_calls": 2,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4775,
+          "tokens_out": 185,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "arith.py"
+          ],
+          "wall_s": 415.9
+        },
+        {
+          "tool_calls": 2,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4766,
+          "tokens_out": 185,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "arith.py"
+          ],
+          "wall_s": 55.0
+        },
+        {
+          "tool_calls": 3,
+          "edit_calls": 2,
+          "edit_errors": 1,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 6093,
+          "tokens_out": 297,
+          "inner_steps": 4,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 4,
+          "files_changed": [
+            "arith.py"
+          ],
+          "wall_s": 46.0
+        }
+      ]
+    },
+    {
+      "id": "buried-bug",
+      "resolved": true,
+      "passes": 2,
+      "runs": 3,
+      "steps": 5.0,
+      "detail": "",
+      "wall_s": 61.9,
+      "edit_errors": 2,
+      "bash_errors_harness": 0,
+      "repair_rounds": 0,
+      "per_run": [
+        {
+          "tool_calls": 4,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 1,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 7661,
+          "tokens_out": 221,
+          "inner_steps": 5,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 5,
+          "files_changed": [
+            "kvparse.py"
+          ],
+          "wall_s": 41.9
+        },
+        {
+          "tool_calls": 4,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 1,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 7707,
+          "tokens_out": 225,
+          "inner_steps": 5,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 5,
+          "files_changed": [
+            "kvparse.py"
+          ],
+          "wall_s": 133.0
+        },
+        {
+          "tool_calls": 5,
+          "edit_calls": 2,
+          "edit_errors": 2,
+          "bash_calls": 1,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 9570,
+          "tokens_out": 437,
+          "inner_steps": 6,
+          "passed": false,
+          "detail": "exit 1 (want 0): Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nAssertionError",
+          "steps": 6,
+          "files_changed": [],
+          "wall_s": 61.9
+        }
+      ]
+    },
+    {
+      "id": "dedup-order",
+      "resolved": true,
+      "passes": 3,
+      "runs": 3,
+      "steps": 3,
+      "detail": "",
+      "wall_s": 42.3,
+      "edit_errors": 0,
+      "bash_errors_harness": 0,
+      "repair_rounds": 0,
+      "per_run": [
+        {
+          "tool_calls": 2,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4747,
+          "tokens_out": 241,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "dedup.py"
+          ],
+          "wall_s": 42.3
+        },
+        {
+          "tool_calls": 2,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4752,
+          "tokens_out": 254,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "dedup.py"
+          ],
+          "wall_s": 69.6
+        },
+        {
+          "tool_calls": 2,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4738,
+          "tokens_out": 239,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "dedup.py"
+          ],
+          "wall_s": 39.6
+        }
+      ]
+    },
+    {
+      "id": "fix-add-bug",
+      "resolved": true,
+      "passes": 3,
+      "runs": 3,
+      "steps": 3,
+      "detail": "",
+      "wall_s": 34.5,
+      "edit_errors": 0,
+      "bash_errors_harness": 0,
+      "repair_rounds": 0,
+      "per_run": [
+        {
+          "tool_calls": 2,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4836,
+          "tokens_out": 167,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "calc.py"
+          ],
+          "wall_s": 34.5
+        },
+        {
+          "tool_calls": 2,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 1,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4615,
+          "tokens_out": 123,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "calc.py"
+          ],
+          "wall_s": 30.5
+        },
+        {
+          "tool_calls": 2,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4851,
+          "tokens_out": 174,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "calc.py"
+          ],
+          "wall_s": 34.9
+        }
+      ]
+    },
+    {
+      "id": "implement-palindrome",
+      "resolved": true,
+      "passes": 2,
+      "runs": 3,
+      "steps": 3.0,
+      "detail": "",
+      "wall_s": 46.8,
+      "edit_errors": 0,
+      "bash_errors_harness": 0,
+      "repair_rounds": 2,
+      "per_run": [
+        {
+          "tool_calls": 3,
+          "edit_calls": 2,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 2,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 6867,
+          "tokens_out": 270,
+          "inner_steps": 4,
+          "passed": false,
+          "detail": "exit 1 (want 0): Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"./eval-implement-palind",
+          "steps": 4,
+          "files_changed": [
+            "palindrome.py"
+          ],
+          "wall_s": 46.8
+        },
+        {
+          "tool_calls": 2,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4780,
+          "tokens_out": 199,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "palindrome.py"
+          ],
+          "wall_s": 64.8
+        },
+        {
+          "tool_calls": 2,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4808,
+          "tokens_out": 261,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "palindrome.py"
+          ],
+          "wall_s": 41.2
+        }
+      ]
+    },
+    {
+      "id": "mutable-default",
+      "resolved": false,
+      "passes": 1,
+      "runs": 3,
+      "steps": 3,
+      "detail": "exit 0 (want 0): ",
+      "wall_s": 45.3,
+      "edit_errors": 0,
+      "bash_errors_harness": 0,
+      "repair_rounds": 0,
+      "per_run": [
+        {
+          "tool_calls": 3,
+          "edit_calls": 2,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4965,
+          "tokens_out": 322,
+          "inner_steps": 3,
+          "passed": false,
+          "detail": "exit 1 (want 0): Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nAssertionError",
+          "steps": 3,
+          "files_changed": [
+            "accumulator.py"
+          ],
+          "wall_s": 46.3
+        },
+        {
+          "tool_calls": 3,
+          "edit_calls": 2,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 6283,
+          "tokens_out": 286,
+          "inner_steps": 4,
+          "passed": false,
+          "detail": "exit 1 (want 0): Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nAssertionError",
+          "steps": 4,
+          "files_changed": [
+            "accumulator.py"
+          ],
+          "wall_s": 43.8
+        },
+        {
+          "tool_calls": 3,
+          "edit_calls": 2,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4983,
+          "tokens_out": 310,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "accumulator.py"
+          ],
+          "wall_s": 45.3
+        }
+      ]
+    },
+    {
+      "id": "off-by-one",
+      "resolved": true,
+      "passes": 3,
+      "runs": 3,
+      "steps": 3,
+      "detail": "",
+      "wall_s": 35.8,
+      "edit_errors": 0,
+      "bash_errors_harness": 0,
+      "repair_rounds": 0,
+      "per_run": [
+        {
+          "tool_calls": 2,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 1,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4545,
+          "tokens_out": 147,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "last_n.py"
+          ],
+          "wall_s": 50.6
+        },
+        {
+          "tool_calls": 2,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4760,
+          "tokens_out": 195,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "last_n.py"
+          ],
+          "wall_s": 35.8
+        },
+        {
+          "tool_calls": 2,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4727,
+          "tokens_out": 191,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "last_n.py"
+          ],
+          "wall_s": 35.5
+        }
+      ]
+    },
+    {
+      "id": "remove-unused-import",
+      "resolved": true,
+      "passes": 3,
+      "runs": 3,
+      "steps": 5,
+      "detail": "",
+      "wall_s": 37.5,
+      "edit_errors": 0,
+      "bash_errors_harness": 0,
+      "repair_rounds": 0,
+      "per_run": [
+        {
+          "tool_calls": 4,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 1,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 7440,
+          "tokens_out": 168,
+          "inner_steps": 5,
+          "passed": true,
+          "detail": "ruff clean",
+          "steps": 5,
+          "files_changed": [
+            "widget.py"
+          ],
+          "wall_s": 35.6
+        },
+        {
+          "tool_calls": 4,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 7370,
+          "tokens_out": 197,
+          "inner_steps": 5,
+          "passed": true,
+          "detail": "ruff clean",
+          "steps": 5,
+          "files_changed": [
+            "widget.py"
+          ],
+          "wall_s": 37.5
+        },
+        {
+          "tool_calls": 4,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 7406,
+          "tokens_out": 203,
+          "inner_steps": 5,
+          "passed": true,
+          "detail": "ruff clean",
+          "steps": 5,
+          "files_changed": [
+            "widget.py"
+          ],
+          "wall_s": 38.1
+        }
+      ]
+    },
+    {
+      "id": "safe-get",
+      "resolved": true,
+      "passes": 3,
+      "runs": 3,
+      "steps": 5,
+      "detail": "",
+      "wall_s": 38.4,
+      "edit_errors": 0,
+      "bash_errors_harness": 0,
+      "repair_rounds": 0,
+      "per_run": [
+        {
+          "tool_calls": 4,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 1,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 7209,
+          "tokens_out": 193,
+          "inner_steps": 5,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 5,
+          "files_changed": [
+            "lookup.py"
+          ],
+          "wall_s": 64.2
+        },
+        {
+          "tool_calls": 4,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 1,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 7230,
+          "tokens_out": 190,
+          "inner_steps": 5,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 5,
+          "files_changed": [
+            "lookup.py"
+          ],
+          "wall_s": 36.6
+        },
+        {
+          "tool_calls": 4,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 1,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 7239,
+          "tokens_out": 214,
+          "inner_steps": 5,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 5,
+          "files_changed": [
+            "lookup.py"
+          ],
+          "wall_s": 38.4
+        }
+      ]
+    },
+    {
+      "id": "skip-none",
+      "resolved": true,
+      "passes": 3,
+      "runs": 3,
+      "steps": 3,
+      "detail": "",
+      "wall_s": 34.6,
+      "edit_errors": 0,
+      "bash_errors_harness": 0,
+      "repair_rounds": 0,
+      "per_run": [
+        {
+          "tool_calls": 2,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4713,
+          "tokens_out": 211,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "totals.py"
+          ],
+          "wall_s": 36.8
+        },
+        {
+          "tool_calls": 2,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4698,
+          "tokens_out": 172,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "totals.py"
+          ],
+          "wall_s": 33.9
+        },
+        {
+          "tool_calls": 2,
+          "edit_calls": 1,
+          "edit_errors": 0,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 0,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 4685,
+          "tokens_out": 181,
+          "inner_steps": 3,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 3,
+          "files_changed": [
+            "totals.py"
+          ],
+          "wall_s": 34.6
+        }
+      ]
+    },
+    {
+      "id": "two-file-change",
+      "resolved": false,
+      "passes": 1,
+      "runs": 3,
+      "steps": 17,
+      "detail": "exit 1 (want 0): Traceback (most recent call last):\n  File \"./report.py\", line 4, in <module",
+      "wall_s": 125.7,
+      "edit_errors": 7,
+      "bash_errors_harness": 0,
+      "repair_rounds": 6,
+      "per_run": [
+        {
+          "tool_calls": 16,
+          "edit_calls": 11,
+          "edit_errors": 6,
+          "bash_calls": 1,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 2,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 51395,
+          "tokens_out": 1616,
+          "inner_steps": 17,
+          "passed": true,
+          "detail": "exit 0 (want 0): ",
+          "steps": 17,
+          "files_changed": [
+            "report.py",
+            "shapes.py"
+          ],
+          "wall_s": 194.9
+        },
+        {
+          "tool_calls": 10,
+          "edit_calls": 6,
+          "edit_errors": 0,
+          "bash_calls": 1,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 3,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 23960,
+          "tokens_out": 715,
+          "inner_steps": 11,
+          "passed": false,
+          "detail": "exit 1 (want 0): Traceback (most recent call last):\n  File \"./report.py\", line 1, in <module",
+          "steps": 11,
+          "files_changed": [
+            "report.py",
+            "shapes.py"
+          ],
+          "wall_s": 125.7
+        },
+        {
+          "tool_calls": 8,
+          "edit_calls": 4,
+          "edit_errors": 1,
+          "bash_calls": 0,
+          "bash_errors_informative": 0,
+          "bash_errors_harness": 0,
+          "repair_rounds": 1,
+          "review_rounds": 0,
+          "halted_reason": "model_done",
+          "tokens_in": 15675,
+          "tokens_out": 721,
+          "inner_steps": 8,
+          "passed": false,
+          "detail": "exit 1 (want 0): Traceback (most recent call last):\n  File \"./report.py\", line 4, in <module",
+          "steps": 8,
+          "files_changed": [
+            "report.py",
+            "shapes.py"
+          ],
+          "wall_s": 82.1
+        }
+      ]
+    }
+  ]
+}

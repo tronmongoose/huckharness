@@ -1,0 +1,8 @@
+{
+  "id": "mutable-default",
+  "prompt": "collect(item, into=[]) has a mutable-default-argument bug: separate calls that omit `into` accidentally share one list. Fix it so each call without `into` starts with a fresh empty list.",
+  "grade": {
+    "type": "command",
+    "cmd": "python3 -c \"import sys;sys.path.insert(0,'.');from accumulator import collect;assert collect('a')==['a'] and collect('b')==['b'] and collect('x',['y'])==['y','x']\""
+  }
+}

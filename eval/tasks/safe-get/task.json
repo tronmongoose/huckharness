@@ -1,0 +1,8 @@
+{
+  "id": "safe-get",
+  "prompt": "get_or_none(d, key) raises KeyError when the key is missing. Change it to return None when the key is absent.",
+  "grade": {
+    "type": "command",
+    "cmd": "python3 -c \"import sys; sys.path.insert(0, '.'); from lookup import get_or_none; assert get_or_none({'a':1},'a')==1 and get_or_none({},'x') is None\""
+  }
+}

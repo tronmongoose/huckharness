@@ -1,0 +1,8 @@
+{
+  "id": "off-by-one",
+  "prompt": "last_n(items, n) is supposed to return the last n items, but it returns n+1 items. Fix the off-by-one bug.",
+  "grade": {
+    "type": "command",
+    "cmd": "python3 -c \"import sys; sys.path.insert(0, '.'); from last_n import last_n; assert last_n([1,2,3,4],2)==[3,4] and last_n([1,2,3],1)==[3]\""
+  }
+}

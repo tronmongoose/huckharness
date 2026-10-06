@@ -1,0 +1,8 @@
+{
+  "id": "two-file-change",
+  "prompt": "Add a function perimeter(w, h) to shapes.py that returns 2*(w+h), then update report.py to also print a line `perimeter <value>` for a 3 by 4 shape (in addition to the existing area line).",
+  "grade": {
+    "type": "command",
+    "cmd": "python3 report.py | grep -q 'perimeter 14'"
+  }
+}

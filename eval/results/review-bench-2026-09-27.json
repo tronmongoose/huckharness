@@ -1,0 +1,397 @@
+{
+ "date": "2026-09-27",
+ "models": {
+  "muse-glimmer:30b": {
+   "score": {
+    "rows": 53,
+    "answered": 10,
+    "answered_rate": 0.189,
+    "agreement": 1.0,
+    "fail_recall": 0.208,
+    "n_fail": 48,
+    "false_fail_rate": 0.0,
+    "n_pass": 5,
+    "always_fail_agreement": 0.906,
+    "median_seconds": 45.0
+   },
+   "switch_ok": false,
+   "blockers": [
+    "answered 19% of rows, need 90% \u2014 a reviewer that declines to answer is not a reviewer",
+    "5 PASS labels, need 20 \u2014 agreement on a FAIL-only corpus cannot distinguish judgment from a rubber stamp"
+   ],
+   "verdicts": [
+    {
+     "pr": 4,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 82.2,
+     "error": null
+    },
+    {
+     "pr": 1,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 75.8,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 47.1,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 31.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 57.6,
+     "error": null
+    },
+    {
+     "pr": 2,
+     "opus": "PASS",
+     "local": null,
+     "seconds": 71.1,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 31.1,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 28.0,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 36.1,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 40.5,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 90.0,
+     "error": null
+    },
+    {
+     "pr": 1,
+     "opus": "PASS",
+     "local": null,
+     "seconds": 77.0,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 85.2,
+     "error": null
+    },
+    {
+     "pr": 5,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 77.0,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 46.6,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 30.6,
+     "error": null
+    },
+    {
+     "pr": 10,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 46.8,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 57.0,
+     "error": null
+    },
+    {
+     "pr": 4,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 64.0,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 40.7,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 40.2,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 40.6,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 57.7,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 42.9,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 28.0,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 28.1,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 30.8,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 38.7,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "PASS",
+     "local": null,
+     "seconds": 90.7,
+     "error": null
+    },
+    {
+     "pr": 10,
+     "opus": "PASS",
+     "local": null,
+     "seconds": 56.1,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 30.1,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 45.2,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 39.1,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 58.4,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 40.8,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 40.6,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 31.1,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 40.5,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 27.7,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 54.6,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 45.2,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 39.6,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 38.2,
+     "error": null
+    },
+    {
+     "pr": 4,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 73.5,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 45.0,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": "FAIL",
+     "seconds": 36.5,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 45.3,
+     "error": null
+    },
+    {
+     "pr": 3,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 70.3,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 67.0,
+     "error": null
+    },
+    {
+     "pr": 10,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 67.6,
+     "error": null
+    },
+    {
+     "pr": 4,
+     "opus": "PASS",
+     "local": null,
+     "seconds": 79.2,
+     "error": null
+    },
+    {
+     "pr": 9,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 44.3,
+     "error": null
+    },
+    {
+     "pr": 8,
+     "opus": "FAIL",
+     "local": null,
+     "seconds": 41.5,
+     "error": null
+    }
+   ]
+  }
+ }
+}

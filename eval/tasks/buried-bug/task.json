@@ -1,0 +1,8 @@
+{
+  "id": "buried-bug",
+  "prompt": "kvparse.py parses 'key=value' lines, but it mishandles values that themselves contain '='. Fix parse_pairs so the value keeps everything after the FIRST '='.",
+  "grade": {
+    "type": "command",
+    "cmd": "python3 -c \"import sys;sys.path.insert(0,'.');from kvparse import parse_pairs;d=parse_pairs('a=1\\nurl=http://x?q=1&r=2');assert d['a']=='1' and d['url']=='http://x?q=1&r=2'\""
+  }
+}

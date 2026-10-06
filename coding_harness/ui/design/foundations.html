@@ -1,0 +1,73 @@
+<!-- @dsCard group="Foundations" name="Sunset inks + type" subtitle="Named palette and display/mono scale — shared by all directions" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bjorn Harness — Foundations</title>
+<style>
+  /* Shared token layer. San Diego sunset, named by EPA-1977 association.
+     No C1 teal/pink. Real app: Fraunces (display) + JetBrains Mono (meta);
+     Georgia / ui-monospace fallbacks on the canvas. */
+  :root {
+    --paper: 224 32% 9%; --card: 224 26% 13%;
+    --ink: 38 28% 90%; --muted: 225 10% 58%; --rule: 224 18% 21%;
+    --accent: 24 92% 58%; --gold: 42 88% 56%; --danger: 8 76% 55%;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: hsl(var(--paper)); color: hsl(var(--ink)); font-family: Georgia, serif; padding: 40px; -webkit-font-smoothing: antialiased; }
+  .mono { font-family: ui-monospace, Menlo, monospace; }
+  .label { font-family: ui-monospace, Menlo, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: hsl(var(--muted)); }
+  h2 { font-size: 20px; font-weight: 500; margin: 0 0 4px; }
+  .col { max-width: 760px; margin: 0 auto; }
+  .rule { border: 0; border-top: 1px solid hsl(var(--rule)); margin: 28px 0; }
+
+  .inks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 16px; }
+  .ink { display: flex; align-items: center; gap: 14px; }
+  .chip { width: 46px; height: 46px; border-radius: 8px; flex: none; border: 1px solid hsl(var(--rule)); }
+  .ink .n { font-size: 15px; }
+  .ink .m { color: hsl(var(--muted)); }
+
+  .waterfall p { margin: 0 0 6px; line-height: 1.1; }
+  .w1 { font-size: 34px; font-weight: 600; }
+  .w2 { font-size: 24px; font-weight: 500; }
+  .w3 { font-size: 17px; }
+  .mono-scale p { font-family: ui-monospace, Menlo, monospace; margin: 0 0 6px; }
+  .m1 { font-size: 16px; }
+  .m2 { font-size: 13px; }
+  .m3 { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--muted)); }
+</style>
+</head>
+<body>
+  <div class="col">
+    <span class="label">BH-00 · Foundations</span>
+    <h2>Sunset inks</h2>
+    <div class="inks">
+      <div class="ink"><span class="chip" style="background:hsl(224 32% 9%)"></span><span><span class="n">Dusk Navy</span><br/><span class="m mono">--paper · 224 32% 9%</span></span></div>
+      <div class="ink"><span class="chip" style="background:hsl(224 26% 13%)"></span><span><span class="n">Dusk Navy, raised</span><br/><span class="m mono">--card · 224 26% 13%</span></span></div>
+      <div class="ink"><span class="chip" style="background:hsl(38 28% 90%)"></span><span><span class="n">Sand White</span><br/><span class="m mono">--ink · 38 28% 90%</span></span></div>
+      <div class="ink"><span class="chip" style="background:hsl(225 10% 58%)"></span><span><span class="n">Slate</span><br/><span class="m mono">--muted · 225 10% 58%</span></span></div>
+      <div class="ink"><span class="chip" style="background:hsl(24 92% 58%)"></span><span><span class="n">Sunset Orange</span><br/><span class="m mono">--accent · 24 92% 58%</span></span></div>
+      <div class="ink"><span class="chip" style="background:hsl(42 88% 56%)"></span><span><span class="n">Gold Leaf</span><br/><span class="m mono">--gold · 42 88% 56%</span></span></div>
+      <div class="ink"><span class="chip" style="background:hsl(8 76% 55%)"></span><span><span class="n">Ember Red</span><br/><span class="m mono">--danger · 8 76% 55%</span></span></div>
+      <div class="ink"><span class="chip" style="background:hsl(224 18% 21%)"></span><span><span class="n">Hairline</span><br/><span class="m mono">--rule · 224 18% 21%</span></span></div>
+    </div>
+
+    <hr class="rule" />
+    <span class="label">Display — Fraunces</span>
+    <div class="waterfall" style="margin-top:12px">
+      <p class="w1">Governed sessions</p>
+      <p class="w2">The agent acts inside its envelope</p>
+      <p class="w3">Anything outside it asks you, just in time.</p>
+    </div>
+
+    <hr class="rule" />
+    <span class="label">Metadata — JetBrains Mono</span>
+    <div class="mono-scale" style="margin-top:12px">
+      <p class="m1">read_file src/auth/middleware.ts</p>
+      <p class="m2">#a3f90c11 · ok · 240 tokens out</p>
+      <p class="m3">what this session may touch</p>
+    </div>
+  </div>
+</body>
+</html>

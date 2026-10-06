@@ -1,0 +1,205 @@
+<!-- @dsCard group="Directions" name="C — Terminal" subtitle="Mono-forward, near-black, amber phosphor, tight grid" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bjorn Harness — C · Terminal</title>
+<style>
+  /* DIRECTION C — TERMINAL. Mono-forward (JetBrains → ui-monospace here),
+     near-black high contrast, amber-phosphor accent, tight grid, boxed panes
+     with thin bright borders, scanline texture < 4%. Engineering-console read.
+     Sunset palette only (no C1 teal/pink). */
+  :root {
+    --paper: 225 30% 6%;
+    --card: 225 24% 9%;
+    --ink: 40 22% 88%;
+    --muted: 225 8% 50%;
+    --rule: 225 16% 18%;
+    --accent: 26 96% 60%;
+    --gold: 44 92% 58%;
+    --danger: 6 82% 58%;
+    --ok: 44 60% 55%;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: hsl(var(--paper)); color: hsl(var(--ink));
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13px; line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  /* scanline texture — felt not seen, under 4% */
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50;
+    background: repeating-linear-gradient(0deg, hsl(var(--ink) / 0.03) 0 1px, transparent 1px 3px);
+    opacity: 0.5;
+  }
+  .accent { color: hsl(var(--accent)); }
+  .gold { color: hsl(var(--gold)); }
+  .muted { color: hsl(var(--muted)); }
+  .lbl { color: hsl(var(--muted)); text-transform: uppercase; letter-spacing: 0.12em; font-size: 10px; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+  /* masthead — a status bar */
+  header { border-bottom: 1px solid hsl(var(--accent) / 0.4); background: hsl(var(--card)); }
+  .bar { display: flex; align-items: center; gap: 14px; padding: 10px 20px; max-width: 1240px; margin: 0 auto; }
+  .bar svg { color: hsl(var(--accent)); }
+  .bar .name { color: hsl(var(--accent)); letter-spacing: 0.06em; font-weight: 600; }
+  .bar .doc { color: hsl(var(--muted)); font-size: 11px; }
+  .bar .conn { margin-left: auto; display: inline-flex; align-items: center; gap: 7px; font-size: 11px; color: hsl(var(--gold)); }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: hsl(var(--gold)); box-shadow: 0 0 6px hsl(var(--gold)); animation: pulse 2.2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+  .switch { display: flex; gap: 0; border-top: 1px solid hsl(var(--rule)); }
+  .switch button { background: none; border: 0; border-right: 1px solid hsl(var(--rule)); cursor: pointer; color: hsl(var(--muted)); font-family: inherit; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding: 7px 18px; }
+  .switch button[aria-current] { color: hsl(var(--paper)); background: hsl(var(--accent)); }
+
+  main { display: grid; grid-template-columns: 232px 1fr 300px; gap: 1px; background: hsl(var(--rule)); border: 1px solid hsl(var(--rule)); margin: 14px 0 40px; }
+  .pane { background: hsl(var(--paper)); padding: 14px; }
+  .pane > .head { color: hsl(var(--accent)); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; border-bottom: 1px solid hsl(var(--rule)); padding-bottom: 8px; margin-bottom: 12px; }
+  .pane > .head::before { content: "// "; color: hsl(var(--muted)); }
+
+  .field { margin-bottom: 13px; }
+  .field label, .field > span { display: block; margin-bottom: 5px; }
+  input, select, textarea { width: 100%; background: hsl(var(--card)); color: hsl(var(--ink)); border: 1px solid hsl(var(--rule)); border-radius: 0; padding: 8px 10px; font-family: inherit; font-size: 12px; }
+  input:focus, textarea:focus, select:focus { outline: 0; border-color: hsl(var(--accent)); }
+  select { -webkit-appearance: none; appearance: none; }
+  .hint { color: hsl(var(--muted)); font-size: 11px; margin-top: 5px; }
+  .seg { display: flex; border: 1px solid hsl(var(--rule)); }
+  .seg button { flex: 1; background: none; border: 0; border-right: 1px solid hsl(var(--rule)); cursor: pointer; color: hsl(var(--muted)); font-family: inherit; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px; }
+  .seg button:last-child { border-right: 0; }
+  .seg button[aria-pressed="true"] { background: hsl(var(--accent)); color: hsl(var(--paper)); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; height: 32px; padding: 0 14px; background: hsl(var(--accent)); color: hsl(var(--paper)); border: 0; border-radius: 0; font-family: inherit; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; cursor: pointer; }
+  .btn-ghost { background: transparent; color: hsl(var(--accent)); border: 1px solid hsl(var(--accent) / 0.6); }
+  .btn-danger { background: transparent; color: hsl(var(--danger)); border: 1px solid hsl(var(--danger) / 0.6); }
+  .divider { border: 0; border-top: 1px dashed hsl(var(--rule)); margin: 16px 0; }
+  .slist button { display: block; width: 100%; text-align: left; background: none; border: 1px solid transparent; cursor: pointer; color: hsl(var(--muted)); font-family: inherit; font-size: 11px; padding: 6px 8px; margin-bottom: 3px; line-height: 1.5; }
+  .slist button.on { color: hsl(var(--accent)); border-color: hsl(var(--accent) / 0.5); background: hsl(var(--card)); }
+  .slist button.on::before { content: "> "; }
+  .slist small { display: block; color: hsl(var(--muted)); font-size: 10px; }
+
+  /* thread — a log stream */
+  .thread { display: flex; flex-direction: column; }
+  .turn { margin-bottom: 6px; }
+  .line { display: flex; gap: 8px; padding: 2px 0; }
+  .gutter { color: hsl(var(--accent)); flex: none; }
+  .you { color: hsl(var(--ink)); }
+  .steps { margin: 8px 0 8px 14px; border-left: 1px solid hsl(var(--rule)); padding-left: 12px; }
+  .step { display: flex; align-items: baseline; gap: 10px; padding: 2px 0; font-size: 11px; }
+  .step .t { color: hsl(var(--gold)); width: 70px; flex: none; }
+  .step .a { color: hsl(var(--muted)); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .step .s { color: hsl(var(--ok)); letter-spacing: 0.1em; }
+  .step .s.blocked { color: hsl(var(--accent)); }
+  .hash { color: hsl(var(--muted)); font-size: 10px; }
+  .agent { color: hsl(var(--ink)); }
+  .caret { color: hsl(var(--accent)); animation: blink 1s step-end infinite; }
+  @keyframes blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }
+  .composer { border-top: 1px solid hsl(var(--rule)); margin-top: auto; padding-top: 12px; }
+  .composer .row { display: flex; gap: 8px; align-items: flex-start; }
+  .prompt { color: hsl(var(--gold)); padding-top: 9px; }
+  .composer textarea { resize: none; }
+  .composer .foot { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 8px; }
+  .composer select { width: auto; padding: 6px 8px; }
+
+  .tabs { display: flex; border: 1px solid hsl(var(--rule)); margin-bottom: 14px; }
+  .tabs button { flex: 1; background: none; border: 0; border-right: 1px solid hsl(var(--rule)); cursor: pointer; color: hsl(var(--muted)); font-family: inherit; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 7px 4px; display: flex; align-items: center; justify-content: center; gap: 5px; }
+  .tabs button:last-child { border-right: 0; }
+  .tabs button[aria-current] { background: hsl(var(--card)); color: hsl(var(--accent)); }
+  .badge { background: hsl(var(--accent)); color: hsl(var(--paper)); font-size: 9px; min-width: 14px; height: 14px; display: inline-flex; align-items: center; justify-content: center; padding: 0 3px; }
+  .spec { border: 1px solid hsl(var(--rule)); margin-bottom: 14px; }
+  .kv { display: flex; align-items: baseline; gap: 10px; padding: 6px 10px; border-bottom: 1px solid hsl(var(--rule)); }
+  .kv:last-child { border-bottom: 0; }
+  .kv .k { color: hsl(var(--muted)); text-transform: uppercase; letter-spacing: 0.1em; font-size: 10px; width: 74px; flex: none; }
+  .kv .v { color: hsl(var(--ink)); font-size: 12px; word-break: break-all; }
+  .perm { border: 1px solid hsl(var(--accent)); box-shadow: 0 0 0 1px hsl(var(--accent) / 0.25), 0 0 18px hsl(var(--accent) / 0.12); }
+  .perm .top { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; background: hsl(var(--accent) / 0.12); border-bottom: 1px solid hsl(var(--accent) / 0.4); }
+  .perm .top .g { color: hsl(var(--gold)); text-transform: uppercase; letter-spacing: 0.12em; font-size: 10px; }
+  .perm .body { padding: 4px 0; }
+  .perm .acts { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px 10px; }
+  .perm .exp { display: inline-flex; align-items: center; gap: 5px; }
+  .perm input { width: 46px; text-align: center; padding: 6px 2px; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <svg width="20" height="20" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+        <path d="M50 8 86.4 29 86.4 71 50 92 13.6 71 13.6 29Z"/>
+        <path d="M50 28 69 39 69 61 50 72 31 61 31 39Z"/>
+        <path d="M31 39 50 50 69 39 M50 50 50 72"/>
+        <path d="M50 28 69 39" stroke-width="4.2"/><path d="M31 61 50 72" stroke-width="4.2"/>
+      </svg>
+      <span class="name">bjorn_harness</span>
+      <span class="doc">BH-01 · governed_sessions</span>
+      <span class="conn"><span class="dot"></span>live · sse</span>
+    </div>
+    <nav class="switch">
+      <button aria-current="true">sessions</button>
+      <button>routines</button>
+      <button>work</button>
+    </nav>
+  </header>
+
+  <div class="wrap">
+    <main>
+      <!-- RAIL -->
+      <section class="pane">
+        <div class="head">new_session</div>
+        <div class="field"><label class="lbl">acting_as</label><input value="startup-agent" /></div>
+        <div class="field"><label class="lbl">envelope</label><select><option>read-only-repo</option></select><p class="hint">read anything under repo; writes ask</p></div>
+        <div class="field"><span class="lbl">mode</span><span class="seg"><button>plan</button><button aria-pressed="true">act</button></span></div>
+        <button class="btn">create session</button>
+        <hr class="divider" />
+        <div class="head" style="margin-top:0">sessions</div>
+        <div class="slist">
+          <button class="on">20260712T1431-a91f<small>startup-agent · act</small></button>
+          <button>20260712T0902-77c3<small>finance-agent · plan</small></button>
+        </div>
+      </section>
+
+      <!-- THREAD -->
+      <section class="pane thread">
+        <div class="head">thread</div>
+        <div class="turn">
+          <div class="line"><span class="gutter">you&gt;</span><span class="you">refactor the auth middleware to use the new token verifier</span></div>
+          <div class="steps">
+            <div class="step"><span class="t">read_file</span><span class="a">src/auth/middleware.ts</span><span class="s">ok</span><span class="hash">#a3f90c11</span></div>
+            <div class="step"><span class="t">grep</span><span class="a">"verifyToken" src/</span><span class="s">ok</span><span class="hash">#b7214e0a</span></div>
+          </div>
+          <div class="line"><span class="gutter">bh&gt;</span><span class="agent">3 call sites use old verifyToken. routing through TokenVerifier, signature held stable<span class="caret">█</span></span></div>
+        </div>
+        <div class="composer">
+          <div class="row"><span class="prompt">$</span><textarea rows="2" placeholder="prompt the agent"></textarea></div>
+          <div class="foot"><span class="lbl">model</span><select><option>auto (router)</option></select><button class="btn">send</button></div>
+        </div>
+      </section>
+
+      <!-- GOVERNANCE -->
+      <section class="pane">
+        <div class="tabs">
+          <button aria-current="true">access</button>
+          <button>perms <span class="badge">1</span></button>
+          <button>activity</button>
+        </div>
+        <div class="lbl" style="margin-bottom:10px">// what this session may touch</div>
+        <div class="spec">
+          <div class="kv"><span class="k">tool</span><span class="v">read_file (read)</span></div>
+          <div class="kv"><span class="k">scope</span><span class="v">src/**</span></div>
+          <div class="kv"><span class="k">grant</span><span class="v">preset · exp 14:32</span></div>
+        </div>
+        <div class="perm">
+          <div class="top"><span class="g">permission requested</span><span class="muted" style="font-size:11px">denies 240s</span></div>
+          <div class="body">
+            <div class="kv"><span class="k">tool</span><span class="v">write_file</span></div>
+            <div class="kv"><span class="k">path</span><span class="v">src/auth/middleware.ts</span></div>
+            <div class="kv"><span class="k">reason</span><span class="v">apply the refactor</span></div>
+          </div>
+          <div class="acts">
+            <button class="btn">allow once</button>
+            <span class="exp"><button class="btn btn-ghost">allow always</button><input value="30" /><span class="lbl">min</span></span>
+            <button class="btn btn-danger">deny</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

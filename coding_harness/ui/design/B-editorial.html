@@ -1,0 +1,199 @@
+<!-- @dsCard group="Directions" name="B — Editorial" subtitle="Serif display forward, gold rules, magazine hierarchy" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bjorn Harness — B · Editorial</title>
+<style>
+  /* DIRECTION B — EDITORIAL. Serif display forward (Fraunces → Georgia here),
+     gold hairline rules, magazine hierarchy, warm sand-on-navy. Keeps the
+     doc-ID / spec-table DNA but as editorial structure, not instrument ornament.
+     Sunset palette only (no C1 teal/pink). */
+  :root {
+    --paper: 222 30% 10%;
+    --card: 222 24% 13%;
+    --ink: 38 34% 91%;
+    --muted: 34 12% 62%;
+    --rule: 222 15% 22%;
+    --accent: 24 92% 58%;
+    --gold: 42 90% 58%;
+    --danger: 8 76% 55%;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: hsl(var(--paper)); color: hsl(var(--ink));
+    font-family: Georgia, "Times New Roman", serif; line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: ui-monospace, Menlo, monospace; }
+  .kicker {
+    font-family: ui-monospace, Menlo, monospace; font-size: 10px;
+    letter-spacing: 0.24em; text-transform: uppercase; color: hsl(var(--gold));
+  }
+  .label {
+    font-family: ui-monospace, Menlo, monospace; font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: hsl(var(--muted));
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 44px; }
+
+  /* masthead — a magazine flag: gold rule top & bottom, serif wordmark */
+  header { border-bottom: 2px solid hsl(var(--gold)); padding: 30px 0 16px; margin-bottom: 4px; }
+  .flag { display: flex; align-items: flex-end; gap: 16px; }
+  .flag svg { color: hsl(var(--accent)); margin-bottom: 3px; }
+  .flag h1 { font-size: 32px; font-weight: 600; letter-spacing: -0.01em; font-style: italic; }
+  .flag .meta { margin-left: auto; text-align: right; }
+  .flag .meta .d { font-size: 15px; font-style: italic; color: hsl(var(--ink)); }
+  .switch { display: flex; gap: 20px; padding: 10px 0; border-bottom: 1px solid hsl(var(--rule)); }
+  .switch button { background: none; border: 0; cursor: pointer; font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: hsl(var(--muted)); padding: 0; }
+  .switch button[aria-current] { color: hsl(var(--accent)); border-bottom: 2px solid hsl(var(--accent)); padding-bottom: 4px; }
+
+  main { display: flex; gap: 40px; padding: 28px 0 60px; align-items: flex-start; }
+
+  .rail { width: 236px; flex: none; }
+  .rail h2 { font-size: 19px; font-style: italic; font-weight: 600; margin-bottom: 4px; }
+  .rail .rule-g { border: 0; border-top: 1px solid hsl(var(--gold) / 0.6); margin: 8px 0 16px; }
+  .field { margin-bottom: 16px; }
+  .field label, .field > span { display: block; margin-bottom: 6px; }
+  input, select, textarea { width: 100%; background: hsl(var(--card)); color: hsl(var(--ink)); border: 1px solid hsl(var(--rule)); border-radius: 3px; padding: 9px 11px; font-family: ui-monospace, Menlo, monospace; font-size: 12px; }
+  select { -webkit-appearance: none; appearance: none; }
+  .hint { color: hsl(var(--muted)); font-size: 12.5px; font-style: italic; margin-top: 6px; }
+  .seg { display: inline-flex; border: 1px solid hsl(var(--rule)); border-radius: 3px; padding: 2px; gap: 2px; }
+  .seg button { background: none; border: 0; cursor: pointer; font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--muted)); padding: 5px 12px; border-radius: 2px; }
+  .seg button[aria-pressed="true"] { background: hsl(var(--gold)); color: hsl(var(--paper)); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; height: 34px; padding: 0 18px; background: hsl(var(--accent)); color: hsl(var(--paper)); border: 0; border-radius: 3px; font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; cursor: pointer; }
+  .btn-ghost { background: transparent; color: hsl(var(--ink)); border: 1px solid hsl(var(--rule)); }
+  .btn-danger { background: transparent; color: hsl(var(--danger)); border: 1px solid hsl(var(--danger) / 0.5); }
+  .divider { border: 0; border-top: 1px solid hsl(var(--rule)); margin: 24px 0; }
+  .slist button { display: block; width: 100%; text-align: left; background: none; border: 0; cursor: pointer; font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: hsl(var(--muted)); padding: 8px 0; border-bottom: 1px solid hsl(var(--rule)); line-height: 1.5; }
+  .slist button.on { color: hsl(var(--accent)); }
+  .slist small { display: block; color: hsl(var(--muted)); font-size: 10px; }
+
+  /* thread — reads like a set article */
+  .thread { flex: 1; min-width: 0; }
+  .turn { padding-bottom: 24px; }
+  .turn .q { font-size: 22px; line-height: 1.4; font-weight: 600; margin-bottom: 6px; }
+  .turn .q .who { color: hsl(var(--gold)); font-style: italic; font-size: 15px; font-weight: 400; margin-right: 8px; }
+  .steps { border-left: 2px solid hsl(var(--gold) / 0.45); padding-left: 18px; margin: 16px 0; }
+  .step { display: flex; align-items: baseline; gap: 12px; padding: 5px 0; }
+  .step .t { width: 76px; flex: none; }
+  .step .a { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: hsl(var(--muted)); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .step .s { font-family: ui-monospace, Menlo, monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: hsl(var(--muted)); }
+  .hash { font-family: ui-monospace, Menlo, monospace; font-size: 10px; color: hsl(var(--muted)); }
+  .ans { font-size: 17px; line-height: 1.68; }
+  .ans::first-letter { }
+  .ans .who { color: hsl(var(--gold)); font-style: italic; font-size: 15px; margin-right: 8px; }
+  .caret { color: hsl(var(--accent)); animation: blink 1.1s step-end infinite; }
+  @keyframes blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }
+  .composer { border-top: 1px solid hsl(var(--gold) / 0.6); padding-top: 18px; margin-top: 20px; }
+  .composer .row { display: flex; gap: 10px; align-items: flex-start; }
+  .prompt { color: hsl(var(--gold)); font-family: ui-monospace, Menlo, monospace; font-size: 14px; padding-top: 10px; }
+  .composer textarea { font-family: Georgia, serif; font-size: 15px; resize: none; background: transparent; }
+  .composer .foot { display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin-top: 10px; }
+  .composer select { width: auto; padding: 6px 10px; }
+
+  /* governance — framed like a sidebar box in a journal */
+  .gov { width: 296px; flex: none; }
+  .gov h3 { font-size: 17px; font-style: italic; font-weight: 600; }
+  .gov .rule-g { border: 0; border-top: 1px solid hsl(var(--gold) / 0.6); margin: 6px 0 14px; }
+  .tabs { display: flex; gap: 16px; margin-bottom: 16px; }
+  .tabs button { background: none; border: 0; cursor: pointer; font-family: ui-monospace, Menlo, monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--muted)); padding: 0 0 4px; }
+  .tabs button[aria-current] { color: hsl(var(--ink)); border-bottom: 2px solid hsl(var(--accent)); }
+  .badge { color: hsl(var(--accent)); }
+  .spec { border-top: 2px solid hsl(var(--gold) / 0.7); border-bottom: 1px solid hsl(var(--rule)); margin-bottom: 18px; }
+  .kv { display: flex; align-items: baseline; gap: 12px; padding: 8px 0; border-top: 1px solid hsl(var(--rule)); }
+  .kv:first-child { border-top: 0; }
+  .kv .k { width: 80px; flex: none; }
+  .kv .v { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: hsl(var(--ink) / 0.92); word-break: break-all; }
+  .perm { border: 1px solid hsl(var(--accent) / 0.7); border-left: 3px solid hsl(var(--accent)); border-radius: 3px; padding: 16px; background: hsl(var(--card)); }
+  .perm .top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+  .perm .acts { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 16px; }
+  .perm .exp { display: inline-flex; align-items: center; gap: 6px; }
+  .perm input { width: 52px; text-align: center; padding: 6px 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="flag">
+      <svg width="26" height="26" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+        <path d="M50 8 86.4 29 86.4 71 50 92 13.6 71 13.6 29Z"/>
+        <path d="M50 28 69 39 69 61 50 72 31 61 31 39Z"/>
+        <path d="M31 39 50 50 69 39 M50 50 50 72"/>
+        <path d="M50 28 69 39" stroke-width="4.2"/><path d="M31 61 50 72" stroke-width="4.2"/>
+      </svg>
+      <h1>Bjorn Harness</h1>
+      <span class="meta">
+        <span class="kicker">BH&#8209;01 · Governed Sessions</span><br/>
+        <span class="d">rev 2026&#8209;07&#8209;12</span>
+      </span>
+    </div>
+    <nav class="switch">
+      <button aria-current="true">Sessions</button>
+      <button>Routines</button>
+      <button>Work</button>
+    </nav>
+  </header>
+
+  <main>
+    <aside class="rail">
+      <h2>New session</h2>
+      <hr class="rule-g" />
+      <div class="field"><label class="label">acting as</label><input value="startup-agent" /></div>
+      <div class="field"><label class="label">envelope</label><select><option>Read-only repo</option></select><p class="hint">read anything under the repo; every write asks.</p></div>
+      <div class="field"><span class="label">mode</span><span class="seg"><button>plan</button><button aria-pressed="true">act</button></span></div>
+      <button class="btn">create session</button>
+      <hr class="divider" />
+      <h2>Sessions</h2>
+      <hr class="rule-g" />
+      <div class="slist">
+        <button class="on">20260712T1431-a91f<small>startup-agent · act</small></button>
+        <button>20260712T0902-77c3<small>finance-agent · plan</small></button>
+      </div>
+    </aside>
+
+    <section class="thread">
+      <article class="turn">
+        <p class="q"><span class="who">You</span>Refactor the auth middleware to use the new token verifier.</p>
+        <div class="steps">
+          <div class="step"><span class="t label">read_file</span><span class="a">src/auth/middleware.ts</span><span class="s">ok</span><span class="hash">#a3f90c11</span></div>
+          <div class="step"><span class="t label">grep</span><span class="a">"verifyToken" src/</span><span class="s">ok</span><span class="hash">#b7214e0a</span></div>
+        </div>
+        <p class="ans"><span class="who">Agent</span>Three call sites use the old <span class="mono">verifyToken</span>. I'll route them through the new <span class="mono">TokenVerifier</span> and keep the signature stable so nothing downstream breaks<span class="caret">▎</span></p>
+      </article>
+      <div class="composer">
+        <div class="row"><span class="prompt">$</span><textarea rows="2" placeholder="prompt the agent"></textarea></div>
+        <div class="foot"><span class="label">model</span><select><option>auto (router)</option></select><button class="btn">send</button></div>
+      </div>
+    </section>
+
+    <aside class="gov">
+      <h3>Access</h3>
+      <hr class="rule-g" />
+      <nav class="tabs">
+        <button aria-current="true">access</button>
+        <button>permissions <span class="badge">1</span></button>
+        <button>activity</button>
+      </nav>
+      <div class="label" style="margin-bottom:10px">what this session may touch</div>
+      <div class="spec">
+        <div class="kv"><span class="k label">tool</span><span class="v">read_file (read)</span></div>
+        <div class="kv"><span class="k label">scope</span><span class="v">src/**</span></div>
+        <div class="kv"><span class="k label">granted by</span><span class="v">preset · expires 14:32</span></div>
+      </div>
+      <div class="perm">
+        <div class="top"><span class="kicker">Permission requested</span><span class="mono" style="font-size:11px;color:hsl(var(--muted))">denies in 240s</span></div>
+        <div class="kv" style="border:0;padding:5px 0"><span class="k label">tool</span><span class="v">write_file</span></div>
+        <div class="kv" style="border:0;padding:5px 0"><span class="k label">path</span><span class="v">src/auth/middleware.ts</span></div>
+        <div class="kv" style="border:0;padding:5px 0"><span class="k label">reason</span><span class="v">apply the verifier refactor</span></div>
+        <div class="acts">
+          <button class="btn">allow once</button>
+          <span class="exp"><button class="btn btn-ghost">allow always</button><input value="30" /><span class="label">min</span></span>
+          <button class="btn btn-danger">deny</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+</div>
+</body>
+</html>
