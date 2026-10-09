@@ -193,9 +193,10 @@ class TestServeMode(unittest.TestCase):
 
     def test_work_endpoint_backup_fallback(self) -> None:
 
-        from coding_harness.modes import ops
+        from coding_harness.modes import serve_beads
         with tempfile.TemporaryDirectory() as tmp:
-            backup = Path(tmp) / "issues.jsonl"
+            (Path(tmp) / ".beads" / "backup").mkdir(parents=True)
+            backup = Path(tmp) / ".beads" / "backup" / "issues.jsonl"
             backup.write_text(
                 json.dumps({
                     "id": "sl-aaaa", "title": "open thing", "status": "open",
@@ -207,8 +208,8 @@ class TestServeMode(unittest.TestCase):
                     "updated_at": "2026-07-09T00:00:00Z",
                 }) + "\n"
             )
-            with mock.patch.object(ops, "BEADS_BACKUP", backup), \
-                 mock.patch.object(ops, "_work_from_bd", return_value=None):
+            with mock.patch.object(serve_beads, "resolve_beads_dir", return_value=Path(tmp)), \
+                 mock.patch.object(serve_beads, "_work_from_bd", return_value=None):
                 status, body = _request("GET", self._url("/v1/work"))
                 status_c, body_c = _request(
                     "GET", self._url("/v1/work?status=closed")

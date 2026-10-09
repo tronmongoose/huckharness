@@ -63,14 +63,14 @@ export function SessionRail({
   onSelect,
   onCreated,
   defaultAutonomy = "low",
-  onPickSkill,
+  onOpenSkills,
 }: {
   sessions: SessionSummary[];
   activeId: string | null;
   onSelect: (id: string) => void;
   onCreated: (id: string) => void;
   defaultAutonomy?: string;
-  onPickSkill?: (name: string) => void;
+  onOpenSkills?: (bucket: string) => void;
 }) {
   const [identity, setIdentity] = useState("");
   const [presetKey, setPresetKey] = useState("project");
@@ -140,10 +140,10 @@ export function SessionRail({
       <div className="mt-5">
         <EarlierList onOpened={onSelect} />
       </div>
-      {onPickSkill && (
+      {onOpenSkills && (
         <>
           <hr className="rule my-5" />
-          <SkillsList onPick={onPickSkill} />
+          <SkillsList onOpen={onOpenSkills} />
         </>
       )}
     </aside>

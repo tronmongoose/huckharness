@@ -5,7 +5,8 @@ Exports ``SKILLS_USER``, ``SKILLS_PROJECT_REL``, ``SKILLS_USER_EXTRA``,
 ``load_skill`` and ``score_skills``. A skill is one directory holding a ``SKILL.md``; a
 directory without one is not a skill and is skipped. ``name:`` and
 ``description:`` come from a ``---`` frontmatter block, falling back to the
-directory name and the first body paragraph.
+directory name and the first body paragraph. An optional ``category:`` is
+kept for the GUI's buckets (see ``skill_buckets``) and never reaches the prompt.
 
 Roots are searched in ``_roots`` order and a later root wins a name
 collision, so project beats user and the harness-native ``.bjorn`` path beats
@@ -53,6 +54,7 @@ class Skill:
     name: str
     description: str
     path: Path
+    category: str = ""
 
 
 def _roots(cwd: str) -> tuple[Path, ...]:
@@ -109,12 +111,12 @@ def _clip(text: str, cap: int) -> str:
     return cut.rstrip(" ,;:.-") + "..."
 
 
-def _parse(text: str, fallback_name: str) -> tuple[str, str]:
-    """(name, description) from frontmatter, with directory/body fallbacks."""
+def _parse(text: str, fallback_name: str) -> tuple[str, str, str]:
+    """(name, description, category) from frontmatter, with directory/body fallbacks."""
     meta, body = _frontmatter(text)
     name = meta.get("name") or fallback_name
     description = meta.get("description") or _first_paragraph(body)
-    return name, _clip(" ".join(description.split()), _DESC_CAP)
+    return name, _clip(" ".join(description.split()), _DESC_CAP), meta.get("category", "")
 
 
 def _first_paragraph(body: str) -> str:
@@ -140,8 +142,9 @@ def index_skills(cwd: str) -> list[Skill]:
                 text = path.read_text(encoding="utf-8", errors="replace")
             except OSError:
                 continue
-            name, description = _parse(text, entry.name)
-            found[name] = Skill(name=name, description=description, path=path)
+            name, description, category = _parse(text, entry.name)
+            found[name] = Skill(name=name, description=description, path=path,
+                                category=category)
     return sorted(found.values(), key=lambda s: s.name)
 
 

@@ -26,6 +26,7 @@ describe("BrainView", () => {
     });
     const onAttach = vi.fn();
     render(<BrainView onAttach={onAttach} />);
+    fireEvent.click(await screen.findByText("list"));
     fireEvent.change(await screen.findByLabelText("search the brain"), { target: { value: "budget" } });
     fireEvent.submit(screen.getByLabelText("search the brain").closest("form")!);
     const badge = await screen.findByText("confidential");
@@ -66,6 +67,7 @@ describe("BrainView", () => {
       ] },
     });
     render(<BrainView onAttach={vi.fn()} />);
+    fireEvent.click(await screen.findByText("list"));
     fireEvent.change(await screen.findByLabelText("search the brain"), { target: { value: "x" } });
     fireEvent.submit(screen.getByLabelText("search the brain").closest("form")!);
     const snippet = await screen.findByText(/^(long )+/);
@@ -89,5 +91,25 @@ describe("AttachChips", () => {
   it("stays quiet for internal notes", () => {
     render(<AttachChips items={[{ path: "startup/plan.md", tier: 1 }]} onRemove={vi.fn()} />);
     expect(screen.queryByText(/keeps the session/)).toBeNull();
+  });
+});
+
+describe("BrainView map", () => {
+  it("opens on the map and reads a central note in the reader", async () => {
+    vi.stubGlobal("matchMedia", (q: string) => ({ matches: q.includes("reduce"),
+      addEventListener() {}, removeEventListener() {} }));
+    routeFetch({
+      "/v1/brain/status": { configured: true, backend: "inprocess", ok: true, age_hours: 1, stale: false, warnings: [] },
+      "/v1/brain/map": { available: true, max_tier: 3, pages: 2, central: { "0": [{ path: "startup/plan.md", title: "Plan" }] },
+        clusters: [{ id: 0, label: "launch plan", size: 2, vaults: { startup: 2 }, max_tier: 1, near: [] }] },
+      "/v1/brain/page": { path: "startup/plan.md", sensitivity: "internal", tier: 1, content: "# Plan body" },
+    });
+    render(<BrainView onAttach={vi.fn()} />);
+    fireEvent.click(await screen.findByRole("button", { name: /launch plan, 2 notes/ }));
+    fireEvent.click(screen.getByText("open"));
+    expect(await screen.findByText("Plan body")).toBeInTheDocument();
+    expect(screen.queryByLabelText("search the brain")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByText("list"));
+    expect(screen.getByLabelText("search the brain")).toBeInTheDocument();
   });
 });

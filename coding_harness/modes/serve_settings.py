@@ -48,6 +48,7 @@ def _as_json(s: Settings) -> dict[str, Any]:
         "hooks": s.hooks,
         "brain": s.brain,
         "models": s.models,
+        "beads_dir": s.beads_dir,
     }
     for key, attr in LIST_KEYS.items():
         out[key] = getattr(s, attr)

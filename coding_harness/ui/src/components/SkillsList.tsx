@@ -1,30 +1,27 @@
-// The skills the model is told about, from the same index as its system
-// prompt. Clicking one starts a `/skill <name> ` line in the composer.
+// The skill buckets the model's skills fall into, from the same index as its
+// system prompt. Clicking one opens the Skills tab at that bucket.
 
 import { usePoll } from "@/hooks/usePoll";
-import type { SkillInfo } from "@/lib/types";
+import type { SkillsResponse } from "@/lib/types";
 import { EmptyState, SectionLabel } from "./shared";
 
-export function SkillsList({ onPick }: { onPick: (name: string) => void }) {
-  const res = usePoll<{ skills: SkillInfo[] }>("/v1/skills", 60000);
-  const skills = res?.skills ?? [];
+export function SkillsList({ onOpen }: { onOpen: (bucket: string) => void }) {
+  const res = usePoll<SkillsResponse>("/v1/skills", 60000);
+  const total = res?.skills.length ?? 0;
+  const buckets = (res?.buckets ?? []).filter((b) => b.count > 0);
   return (
     <div className="min-h-0 flex flex-col">
-      <SectionLabel>Skills · {skills.length}</SectionLabel>
-      {res && skills.length === 0 ? (
+      <SectionLabel>Skills · {total}</SectionLabel>
+      {res && total === 0 ? (
         <EmptyState>none found in ~/.config/bjorn/skills or ~/.claude/skills</EmptyState>
       ) : (
         <ul className="space-y-0.5 overflow-y-auto min-h-0">
-          {skills.map((s) => (
-            <li key={s.name}>
-              <button
-                type="button"
-                onClick={() => onPick(s.name)}
-                title={s.description}
-                className="text-left w-full rounded px-2 py-1 text-muted hover:text-ink hover:bg-card/60"
-              >
-                <span className="block font-mono text-[0.72rem] text-ink truncate">{s.name}</span>
-                <span className="block text-xs truncate">{s.description}</span>
+          {buckets.map((b) => (
+            <li key={b.name}>
+              <button type="button" onClick={() => onOpen(b.name)}
+                className="flex items-baseline gap-2 text-left w-full rounded px-2 py-1 text-muted hover:text-ink hover:bg-card/60">
+                <span className="text-sm truncate">{b.name}</span>
+                <span className="ml-auto font-mono text-[0.7rem] tabular-nums">{b.count}</span>
               </button>
             </li>
           ))}

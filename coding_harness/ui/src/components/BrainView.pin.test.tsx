@@ -17,6 +17,7 @@ describe("BrainView pin", () => {
     });
     const onPin = vi.fn();
     render(<BrainView onAttach={vi.fn()} onPin={onPin} />);
+    fireEvent.click(await screen.findByText("list"));
     fireEvent.change(await screen.findByLabelText("search the brain"), { target: { value: "plan" } });
     fireEvent.submit(screen.getByLabelText("search the brain").closest("form")!);
     fireEvent.click(await screen.findByText("startup/plan.md"));

@@ -197,14 +197,50 @@ export interface WorkItem {
   status: string;
   priority: number | null;
   issue_type: string | null;
-  updated_at?: string;
+  updated_at?: string | null;
+  assignee?: string | null;
 }
 
+// source "none" means no beads directory resolved; reason says how to set one.
 export interface WorkResponse {
   items: WorkItem[];
   status: string;
-  source: "live" | "backup";
+  source: "live" | "backup" | "none";
+  writable: boolean;
+  dir?: string;
+  reason?: string;
   backup_age?: string | null;
+}
+
+export interface BeadLink {
+  id: string;
+  title: string | null;
+  status: string | null;
+  priority: number | null;
+  issue_type: string | null;
+  dependency_type: string | null;
+}
+
+export interface BeadDetail extends WorkItem {
+  description: string | null;
+  notes: string | null;
+  acceptance_criteria: string | null;
+  design: string | null;
+  owner: string | null;
+  labels: string[] | null;
+  parent: string | null;
+  close_reason: string | null;
+  created_at: string | null;
+  closed_at: string | null;
+  dependencies: BeadLink[];
+  dependents: BeadLink[];
+}
+
+export type BeadType = "bug" | "feature" | "task" | "epic" | "chore" | "decision";
+
+export interface BeadWriteResult {
+  ok: boolean;
+  id: string | null;
 }
 
 // Model agility: pin a turn to a model.
@@ -241,6 +277,18 @@ export interface SkillInfo {
   name: string;
   description: string;
   source: string;
+  bucket?: string;
+}
+
+// A use-case group of skills, in display order, as GET /v1/skills reports it.
+export interface SkillBucket {
+  name: string;
+  count: number;
+}
+
+export interface SkillsResponse {
+  skills: SkillInfo[];
+  buckets?: SkillBucket[];
 }
 
 export interface TranscriptInfo {
@@ -283,6 +331,7 @@ export interface ContextUse {
 }
 
 export interface SkillDetail extends SkillInfo {
+  category?: string;
   editable: boolean;
   text: string;
 }
@@ -312,6 +361,38 @@ export interface BrainStatus {
   stale: boolean;
   warnings: string[];
   error?: string;
+}
+
+// Topic map (modes/serve_brain_map.py). Screen only: never sent to a model.
+export interface BrainCluster {
+  id: number;
+  label: string;
+  size: number;
+  vaults: Record<string, number>; // vault -> page count, largest first
+  max_tier: number;
+  near: Array<[number, number]>; // [cluster id, centroid cosine], top 3
+}
+
+export interface BrainCentralNote {
+  path: string;
+  title: string;
+}
+
+export interface BrainMapData {
+  available: true;
+  max_tier: number; // the tier actually used, after the identity's cap
+  pages: number;
+  clusters: BrainCluster[];
+  central: Record<string, BrainCentralNote[]>; // cluster id -> up to 5 notes
+}
+
+export type BrainMapResponse = BrainMapData | { available: false; reason: string };
+
+export interface BrainMapHits {
+  available: boolean;
+  hits?: Record<string, number>; // cluster id -> hit count
+  warnings?: string[];
+  reason?: string;
 }
 
 // A note waiting to go out with the next turn.

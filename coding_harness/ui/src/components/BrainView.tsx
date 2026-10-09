@@ -1,4 +1,5 @@
-// Brain tab: search the second brain, read a note, attach it to a session.
+// Brain tab: a topic map of the second brain by default, or the search list;
+// either opens a note in the reader, which attaches it to a session.
 // The screen shows every tier; what reaches a model is decided server-side,
 // and a confidential note keeps its session on local models from then on.
 
@@ -8,6 +9,7 @@ import { usePoll } from "@/hooks/usePoll";
 import { apiFetch } from "@/lib/api";
 import { LOCAL_ONLY_TIER, TIER_NAMES } from "@/lib/prompt";
 import type { Attachment, BrainHit, BrainPage, BrainStatus } from "@/lib/types";
+import { BrainMap } from "./BrainMap";
 import { Markdown } from "./Markdown";
 import { Button, EmptyState, SectionLabel, TextAction } from "./shared";
 
@@ -53,6 +55,34 @@ function IndexLine({ status }: { status: BrainStatus }) {
   );
 }
 
+function Reader({ page, onAttach, onPin, onClose }: {
+  page: BrainPage;
+  onAttach: (a: Attachment) => void;
+  onPin?: (a: Attachment) => void;
+  onClose?: () => void;
+}) {
+  return (
+    <article>
+      <div className="flex items-center gap-3 mb-4 flex-wrap">
+        <h2 className="font-mono text-sm text-ink">{page.path}</h2>
+        <TierBadge tier={page.tier} label={page.sensitivity} />
+        <span className="ml-auto flex items-center gap-3">
+          {onClose && <TextAction onClick={onClose}>close</TextAction>}
+          {onPin && (
+            <Button variant="outline" onClick={() => onPin({ path: page.path, tier: page.tier })}>
+              pin to session
+            </Button>
+          )}
+          <Button onClick={() => onAttach({ path: page.path, tier: page.tier })}>
+            attach to session
+          </Button>
+        </span>
+      </div>
+      <Markdown text={page.content} />
+    </article>
+  );
+}
+
 export function BrainView({ onAttach, onPin }: {
   onAttach: (a: Attachment) => void;
   // Pins to the open session: the note then rides every local turn.
@@ -64,6 +94,7 @@ export function BrainView({ onAttach, onPin }: {
   const [hits, setHits] = useState<BrainHit[] | null>(null);
   const [page, setPage] = useState<BrainPage | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [mode, setMode] = useState<"map" | "list">("map");
 
   const search = async (v: string | null = vault) => {
     if (!query.trim()) return;
@@ -96,7 +127,7 @@ export function BrainView({ onAttach, onPin }: {
   }
 
   const vaults = [...new Set((hits ?? []).map((h) => h.vault).filter(Boolean))];
-  return (
+  const list = (
     <div className="flex-1 min-h-0 flex gap-8">
       <aside className="w-96 shrink-0 flex flex-col min-h-0">
         <form className="flex gap-2 mb-3" onSubmit={(e) => { e.preventDefault(); void search(); }}>
@@ -104,15 +135,6 @@ export function BrainView({ onAttach, onPin }: {
             onChange={(e) => setQuery(e.target.value)} className="input" />
           <Button onClick={() => void search()} disabled={!query.trim()}>search</Button>
         </form>
-        {status && <IndexLine status={status} />}
-        {status && status.warnings.length > 0 && (
-          <ul aria-label="index warnings" className="text-xs text-accent mb-2 space-y-0.5">
-            {status.warnings.map((w) => <li key={w}>{w}</li>)}
-          </ul>
-        )}
-        {status && !status.ok && (
-          <p className="text-xs text-danger mb-2">index not answering: {status.error}</p>
-        )}
         {error && <p className="text-xs text-danger mb-2">{error}</p>}
         {vaults.length > 1 || vault ? (
           <div className="flex flex-wrap gap-2 mb-3">
@@ -147,27 +169,41 @@ export function BrainView({ onAttach, onPin }: {
       </aside>
       <section className="flex-1 min-w-0 overflow-y-auto pr-2 max-w-4xl">
         {page ? (
-          <article>
-            <div className="flex items-center gap-3 mb-4 flex-wrap">
-              <h2 className="font-mono text-sm text-ink">{page.path}</h2>
-              <TierBadge tier={page.tier} label={page.sensitivity} />
-              <span className="ml-auto flex items-center gap-3">
-                {onPin && (
-                  <Button variant="outline" onClick={() => onPin({ path: page.path, tier: page.tier })}>
-                    pin to session
-                  </Button>
-                )}
-                <Button onClick={() => onAttach({ path: page.path, tier: page.tier })}>
-                  attach to session
-                </Button>
-              </span>
-            </div>
-            <Markdown text={page.content} />
-          </article>
+          <Reader page={page} onAttach={onAttach} onPin={onPin} />
         ) : (
           <EmptyState>Open a result to read it. Attach it to send it with your next prompt.</EmptyState>
         )}
       </section>
+    </div>
+  );
+  return (
+    <div className="flex-1 min-h-0 flex flex-col">
+      <div className="flex items-center gap-5 mb-2">
+        <span className="flex gap-3" aria-label="brain view">
+          {(["map", "list"] as const).map((m) => (
+            <TextAction key={m} tone={mode === m ? "accent" : "default"} onClick={() => setMode(m)}>{m}</TextAction>
+          ))}
+        </span>
+        {status && <IndexLine status={status} />}
+      </div>
+      {status && status.warnings.length > 0 && (
+        <ul aria-label="index warnings" className="text-xs text-accent mb-2 space-y-0.5">
+          {status.warnings.map((w) => <li key={w}>{w}</li>)}
+        </ul>
+      )}
+      {status && !status.ok && (
+        <p className="text-xs text-danger mb-2">index not answering: {status.error}</p>
+      )}
+      {mode === "list" ? list : (
+        <div className="flex-1 min-h-0 flex gap-8">
+          <BrainMap onOpen={(p) => void open(p)} />
+          {page && (
+            <section className="w-[40%] shrink-0 overflow-y-auto pr-2">
+              <Reader page={page} onAttach={onAttach} onPin={onPin} onClose={() => setPage(null)} />
+            </section>
+          )}
+        </div>
+      )}
     </div>
   );
 }

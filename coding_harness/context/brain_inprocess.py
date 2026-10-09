@@ -32,6 +32,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from coding_harness.context.brain import BrainError, Hit
+from coding_harness.context.brain_clusters import ClusterMixin
 from coding_harness.mcp.config import _expand_obj
 
 EMBED_TIMEOUT_S = 5.0
@@ -92,8 +93,10 @@ def _upgrade_notes(notes: list[str]) -> list[str]:
     return [n for i, n in enumerate(out) if n != UPGRADE_WARNING or out.index(n) == i]
 
 
-class InProcessBackend:
-    """Search and read the index with the library, one read-only connection per call."""
+class InProcessBackend(ClusterMixin):
+    """Search and read the index with the library, one read-only connection per call.
+
+    ``ClusterMixin`` adds the screen-only topic map."""
 
     def __init__(self, block: dict[str, Any],
                  embed_fn: Callable[[str], Any] | None = None):

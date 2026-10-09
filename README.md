@@ -99,6 +99,17 @@ new session.
   models, writes atomically at mode 0600 and applies to sessions started
   after it. Routes: `GET /v1/settings`, `PUT /v1/settings {"user": {...}}`;
   writable keys left out of the PUT are cleared, the rest are kept from disk.
+- **Fleet view.** Routines are read-only. Work lists beads issues by
+  priority, filtered by type and text. A row opens a drawer with the
+  description, notes, dependencies and status, and actions to claim, close
+  (two steps, a reason required) and add a note. A form at the top creates a
+  bead. The server runs `bd` in its cwd when that holds `.beads`, else in the
+  `beads_dir` setting, else the list is empty and says so. Every call is an
+  argv list with no shell and a 10 s timeout, and ids must match
+  `^[a-z][a-z0-9]*-[a-z0-9.]+$`. Writes are 409 under `HARNESS_SETTINGS=off`.
+  A failed `bd` answers 502 with its stderr. Routes: `GET /v1/work?status=`,
+  `GET /v1/beads/{id}`, `POST /v1/beads {title, priority, type}`,
+  `POST /v1/beads/{id}/claim`, `.../close {reason}`, `.../note {text}`.
 - **Projects.** The header dropdown lists the git repos in `~/projects`.
   Picking one starts or reuses that project's server and moves the tab.
 - Tool calls expand to show the full command, diff and output. Calls
@@ -356,8 +367,8 @@ Two JSON files, user then project, merged per key:
 The project file wins per scalar key. List keys concatenate, so a project can
 add prefixes and roots but never remove what the user file set.
 A project file is untrusted until you run `bjorn trust` in that repository.
-Before that its `autonomy`, `hooks`, `commandAllowlist`, `extraReadRoots` and
-`sandbox` keys are skipped with a startup note, its `.mcp.json` is not loaded
+Before that its `autonomy`, `hooks`, `commandAllowlist`, `extraReadRoots`,
+`sandbox` and `beads_dir` keys are skipped with a startup note, its `.mcp.json` is not loaded
 and its `.claude/hooks/sentinel-gate.py` is not run. Trust covers
 subdirectories and is stored in `~/.config/bjorn/trusted_projects.json`.
 See [SECURITY.md](SECURITY.md) for the threat model.
@@ -374,6 +385,7 @@ at most 500 entries of at most 1024 characters each.
 | `extraReadRoots` | list | directories readable outside cwd |
 | `hooks` | dict | lifecycle hook commands per event, lists concatenate per event (see Hooks) |
 | `brain` | dict | the second-brain index, user file only (see below) |
+| `beads_dir` | string | directory holding `.beads` for the GUI's Work list when cwd has none; `~` expands. Hand-edited |
 | `sandbox` | dict | accepted and stored; nothing reads it yet. There is no sandbox: LOW means arbitrary code inside the working directory's toolchain |
 
 ### The brain block
@@ -483,6 +495,13 @@ text and grants nothing; every resulting tool call is still gated by the
 autonomy ladder, the session envelope and Sentinel, so honouring `tools:`
 would only add a weaker second gate.
 
+The GUI's Skills tab groups skills into use-case buckets. A `category:`
+frontmatter key that names a bucket places a skill. Skills without one can be
+placed by name in `~/.config/bjorn/skill_buckets.json`, a map of bucket to a
+list of skill names. Skill names describe whoever wrote them, so the map lives
+with the user's skills and the package ships none. Anything unplaced lands in
+Other. Buckets are display-only and never reach the prompt.
+
 In the REPL, `/skill <name>` injects that skill's full SKILL.md as the next
 prompt. `context/skills.py` exports `skills_block(cwd)` and `load_skill(name)`
 for the full text.
@@ -517,6 +536,17 @@ still answers a stale index, under a first line `Note: the index is N hours
 old.` `GET /v1/brain/status` answers `{configured, backend, ok, age_hours,
 stale, warnings}`, and the Brain tab shows the backend, the age and a stale
 marker.
+
+The Brain tab opens on a topic map, with a toggle back to the search list.
+`GET /v1/brain/map?max_tier=` answers the index's topic clusters: label,
+size, vault mix, highest tier, nearest clusters and up to five central
+notes each. `GET /v1/brain/map/search?q=&max_tier=` answers `{hits:
+{cluster id: count}}` for a topic search, which the map highlights.
+`max_tier` is 0 to 3, default 3, and the backend lowers it to the
+identity's clearance. The answer names the tier used. Both are screen
+only (`modes/serve_brain_map.py`): nothing reaches a session, its
+history, the transcript or a model. Only the in-process backend has a
+map. Over MCP both answer `{available: false, reason}`.
 
 After `turn_done` on a local turn, a proposal pass runs on a worker thread.
 It runs in the GUI serve, and in `bjorn serve` once user settings configure a

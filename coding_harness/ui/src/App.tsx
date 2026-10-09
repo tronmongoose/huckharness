@@ -153,6 +153,13 @@ function Workspace() {
     setSeed({ text: `/skill ${name} `, nonce: Date.now() });
     setView("sessions");
   };
+  // A rail bucket click remounts the Skills tab at that bucket.
+  const [skillsAt, setSkillsAt] = useState<{ bucket: string | null; nonce: number }>(
+    { bucket: null, nonce: 0 });
+  const openSkills = (bucket: string) => {
+    setSkillsAt({ bucket, nonce: Date.now() });
+    setView("skills");
+  };
   const sessionsRes = usePoll<SessionsResponse>("/v1/sessions", 3000);
   const health = usePoll<Healthz>("/v1/healthz", 30000);
   const sessions = sessionsRes?.sessions ?? [];
@@ -251,7 +258,10 @@ function Workspace() {
               <button
                 key={v}
                 type="button"
-                onClick={() => setView(v)}
+                onClick={() => {
+                  if (v === "skills") setSkillsAt({ bucket: null, nonce: Date.now() });
+                  setView(v);
+                }}
                 className={`flex-1 sm:flex-none px-2 sm:px-3 py-1 rounded font-mono text-[0.68rem] uppercase tracking-[0.14em] ${
                   view === v
                     ? "bg-card text-accent"
@@ -273,7 +283,7 @@ function Workspace() {
       <main className="flex gap-4 md:gap-8 flex-1 min-h-0 min-w-0">
         {view === "skills" ? (
           <ErrorBoundary label="skills view">
-            <SkillsView onUse={useSkill} />
+            <SkillsView key={skillsAt.nonce} initialBucket={skillsAt.bucket} onUse={useSkill} />
           </ErrorBoundary>
         ) : view === "brain" ? (
           <ErrorBoundary label="brain view">
@@ -303,7 +313,7 @@ function Workspace() {
             onSelect={pickSession}
             onCreated={pickSession}
             defaultAutonomy={health?.default_autonomy}
-            onPickSkill={useSkill}
+            onOpenSkills={openSkills}
           />
         </ErrorBoundary>
         </Drawer>

@@ -43,8 +43,9 @@ LIST_KEYS = {
 }
 _RAW_KEYS = {"sandbox": dict}
 # Keys that widen what a session may do or run code. An untrusted project file
-# may not set them.
-PRIVILEGED_KEYS = frozenset({"autonomy", "hooks", "commandAllowlist", "extraReadRoots", "sandbox"})
+# may not set them. beads_dir picks the directory the server runs ``bd`` in.
+PRIVILEGED_KEYS = frozenset({"autonomy", "hooks", "commandAllowlist", "extraReadRoots", "sandbox",
+                             "beads_dir"})
 # Every list entry is a prefix or glob checked on each command or write.
 MAX_LIST_ITEMS = 500
 MAX_ITEM_CHARS = 1024
@@ -70,6 +71,7 @@ class Settings:
     sandbox: dict[str, Any] = field(default_factory=dict)
     brain: dict[str, Any] = field(default_factory=dict)  # MCP server block for slos-recall
     models: dict[str, str] = field(default_factory=dict)  # role -> tag, see core/model_roles
+    beads_dir: str | None = None  # where serve runs bd when cwd has no .beads
     untrusted_keys: list[str] = field(default_factory=list)  # project keys skipped for lack of trust
 
 
@@ -189,6 +191,10 @@ def _merge(settings: Settings, data: dict[str, Any], path: Path) -> None:
             if not isinstance(value, str) or not value:
                 raise SettingsError(f"{path}: model must be a non-empty string")
             settings.model = value
+        elif key == "beads_dir":
+            if not isinstance(value, str) or not value or len(value) > MAX_ITEM_CHARS:
+                raise SettingsError(f"{path}: beads_dir must be a non-empty path string")
+            settings.beads_dir = value
         elif key == "hooks":
             _merge_hooks(settings, value, path)
         elif key == "models":

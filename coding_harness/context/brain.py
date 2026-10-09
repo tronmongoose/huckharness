@@ -81,7 +81,12 @@ def _payload(result: dict[str, Any]) -> dict[str, Any]:
 
 
 class Backend(Protocol):
-    """What a brain backend answers. Tier caps stay in the caller, never here."""
+    """What a brain backend answers. Tier caps stay in the caller, never here.
+
+    Optional, screen only: ``clusters(max_tier)`` and ``query_clusters(q,
+    max_tier, warnings)`` for the topic map (``brain_clusters``). A backend
+    without them has no map, and ``BrainClient`` answers None.
+    """
 
     def search(self, query: str, *, top_k: int,
                warnings: list[str] | None = None) -> list[Hit]:
@@ -253,6 +258,23 @@ class BrainClient:
     def probe(self) -> float | None:
         """Raise BrainError unless the index answers for this identity; return its age."""
         return self._backend.probe()
+
+    def clusters(self, max_tier: int) -> dict[str, Any] | None:
+        """The topic map at or under ``max_tier``; None when the backend has none."""
+        fn = getattr(self._backend, "clusters", None)
+        return fn(max_tier) if callable(fn) else None
+
+    def query_clusters(self, query: str, max_tier: int) -> dict[str, int] | None:
+        """{cluster id: hit count} for ``query``; None when the backend has no map."""
+        fn = getattr(self._backend, "query_clusters", None)
+        if not callable(fn):
+            return None
+        notes: list[str] = []
+        try:
+            return fn(query, max_tier, warnings=notes)
+        finally:
+            with self._warnings_lock:
+                self._warnings = notes
 
     def upgrade_pending(self) -> bool:
         """True while the index re-embeds after an upgrade; MCP cannot say, so False."""

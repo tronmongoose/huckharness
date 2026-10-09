@@ -19,11 +19,13 @@ Endpoints (versioned; ``/v1`` prefix):
                                  notifications inside ``data:`` lines)
   .../plan, .../act, .../autonomy, .../todo   spec-then-run; see serve_plan
   .../memories, .../pin, /v1/skills/suggest     recall and memory; see serve_brain_extra
+  GET /v1/brain/map[/search]     screen-only topic map; see serve_brain_map
   GET /v1/board, POST .../steer  session board and mid-turn steering; see serve_board
   /v1/git, /v1/git/commit, /v1/worktrees[/open]   git panel; see serve_git
   GET  /v1/transcripts?q=, POST /v1/transcripts/{id}/{title,delete}
                                  history; see serve_history
   GET, PUT /v1/settings         the user settings file; see serve_settings
+  GET /v1/work, /v1/beads[/{id}[/claim,close,note]]   beads; see serve_beads
 
 Event streaming uses Server-Sent Events instead of WebSocket. The bead
 text mentions WebSocket but its own NOTES line pins the implementation
@@ -79,8 +81,10 @@ from coding_harness.core.settings import Settings, load_settings, resolve_autono
 from coding_harness.modes import (
     ops,
     serve_auth,
+    serve_beads,
     serve_board,
     serve_brain_extra,
+    serve_brain_map,
     serve_changes,
     serve_composer,
     serve_git,
@@ -680,10 +684,10 @@ def _make_handler(state: _ServerState) -> type[BaseHTTPRequestHandler]:
             if path == "/v1/settings":
                 self._send_json(*serve_settings.get_settings(os.getcwd()))
                 return
-            if path == "/v1/work":
-                query = parse_qs(self.path.partition("?")[2])
-                status_q = (query.get("status") or ["open"])[0]
-                self._send_json(200, ops.list_work(status_q))
+            beads = serve_beads.handle_get(path, parse_qs(self.path.partition("?")[2]),
+                                           os.getcwd(), state.settings.beads_dir)
+            if beads is not None:
+                self._send_json(*beads)
                 return
             if path == "/v1/healthz":
                 self._send_json(200, {
@@ -782,6 +786,10 @@ def _make_handler(state: _ServerState) -> type[BaseHTTPRequestHandler]:
                 return
             if path == "/v1/projects/open":
                 self._handle_open_project(body)
+                return
+            beads = serve_beads.handle_post(path, body, os.getcwd(), state.settings.beads_dir)
+            if beads is not None:
+                self._send_json(*beads)
                 return
             if path in serve_git.POST_PATHS:
                 serve_git.handle(self, state, "POST", path,
@@ -1210,15 +1218,16 @@ def _make_handler(state: _ServerState) -> type[BaseHTTPRequestHandler]:
         def _handle_save_skill(self, name: str, body: dict[str, Any]) -> None:
             """Create or replace a skill under ~/.config/bjorn/skills."""
             description, text = body.get("description"), body.get("body")
-            if not isinstance(description, str) or not isinstance(text, str):
-                self._send_error_json(400, "body.description and body.body must be strings")
+            category = body.get("category", "")
+            if not all(isinstance(v, str) for v in (description, text, category)):
+                self._send_error_json(400, "body.description, body.body and body.category must be strings")
                 return
             existing = serve_gui.skill_detail(name, os.getcwd())
             if existing is not None and not existing["editable"]:
                 self._send_error_json(
                     409, f"{name} lives in {existing['source']}'s skills; copy it under a new name")
                 return
-            ok, reason = serve_gui.save_skill(name, description, text)
+            ok, reason = serve_gui.save_skill(name, description, text, category)
             if not ok:
                 self._send_error_json(400, reason)
                 return
@@ -1243,6 +1252,9 @@ def _make_handler(state: _ServerState) -> type[BaseHTTPRequestHandler]:
                 return
             if path == "/v1/brain/status":
                 self._send_json(200, serve_gui.brain_status(client))
+                return
+            if path in serve_brain_map.PATHS:
+                serve_brain_map.handle(self, client, path, query)
                 return
             if client is None:
                 self._send_error_json(404, "no second brain configured")
@@ -1573,12 +1585,6 @@ _OPENAPI_SPEC: dict[str, Any] = {
                 "responses": {"200": {"description": "routines + summary"}},
             }
         },
-        "/v1/work": {
-            "get": {
-                "summary": "Beads work items (read-only; ?status=open|closed)",
-                "responses": {"200": {"description": "work items + source"}},
-            }
-        },
         "/v1/models": {
             "get": {
                 "summary": "Models a turn may be pinned to (allowed-origin only)",
@@ -1841,6 +1847,7 @@ _OPENAPI_SPEC: dict[str, Any] = {
 }
 _OPENAPI_SPEC["paths"].update(serve_plan.OPENAPI_PATHS)
 _OPENAPI_SPEC["paths"].update(serve_brain_extra.OPENAPI_PATHS)
+_OPENAPI_SPEC["paths"].update(serve_brain_map.OPENAPI_PATHS)
 _OPENAPI_SPEC["paths"].update(serve_board.OPENAPI_PATHS)
 
 
@@ -1848,6 +1855,7 @@ _OPENAPI_SPEC["paths"].update(serve_changes.OPENAPI_PATHS)
 _OPENAPI_SPEC["paths"].update(serve_git.OPENAPI_PATHS)
 _OPENAPI_SPEC["paths"].update(serve_history.OPENAPI_PATHS)
 _OPENAPI_SPEC["paths"].update(serve_settings.OPENAPI_PATHS)
+_OPENAPI_SPEC["paths"].update(serve_beads.OPENAPI_PATHS)
 
 
 # ── Entry point ──────────────────────────────────────────────────────

@@ -20,6 +20,7 @@ PRIVILEGED = {
     "commandAllowlist": ["curl"],
     "extraReadRoots": ["/"],
     "sandbox": {"network": True},
+    "beads_dir": "/elsewhere",
 }
 RESTRICTIVE = {
     "commandDenylist": ["npm publish"],
@@ -60,7 +61,7 @@ def test_untrusted_project_cannot_set_privileged_keys(env: tuple[Path, Path]) ->
     assert s.autonomy is None
     assert s.hooks == {}
     assert s.command_allowlist == [] and s.extra_read_roots == []
-    assert s.sandbox == {}
+    assert s.sandbox == {} and s.beads_dir is None
     assert s.untrusted_keys == sorted(PRIVILEGED)
 
 

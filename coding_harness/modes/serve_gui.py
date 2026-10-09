@@ -14,7 +14,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from coding_harness.context import skills
+from coding_harness.context import skill_buckets, skills
 
 # First line of a prompt built from a skill. The thread and the session title
 # read it back, so a replayed transcript renders the same as the live turn.
@@ -41,11 +41,15 @@ def _source(path: Path) -> str:
 
 
 def list_skills(cwd: str) -> dict[str, Any]:
-    """Every indexed skill for ``cwd``, the same set the system prompt names."""
-    return {"skills": [
-        {"name": s.name, "description": s.description, "source": _source(s.path)}
+    """Every indexed skill for ``cwd`` with its bucket, plus the ordered bucket counts."""
+    by_name = skill_buckets.user_buckets()
+    rows = [
+        {"name": s.name, "description": s.description, "source": _source(s.path),
+         "bucket": skill_buckets.bucket_of(s.name, s.category, by_name)}
         for s in skills.index_skills(cwd)
-    ]}
+    ]
+    return {"skills": rows,
+            "buckets": skill_buckets.bucket_counts([r["bucket"] for r in rows])}
 
 
 def skill_prompt(name: str, task: str, cwd: str) -> str | None:
@@ -244,26 +248,33 @@ def skill_detail(name: str, cwd: str) -> dict[str, Any] | None:
                 return None
             editable = s.path.resolve().is_relative_to(_bjorn_skills_root())
             return {"name": s.name, "description": s.description, "source": _source(s.path),
+                    "bucket": skill_buckets.bucket_of(s.name, s.category),
+                    "category": skill_buckets.canonical_bucket(s.category) or "",
                     "editable": editable, "text": text}
     return None
 
 
-def save_skill(name: str, description: str, body: str) -> tuple[bool, str]:
+def save_skill(name: str, description: str, body: str, category: str = "") -> tuple[bool, str]:
     """Write ~/.config/bjorn/skills/<name>/SKILL.md; (ok, reason).
 
     Only the bjorn root is written. The name is checked against a strict
     pattern and the resolved path must stay under that root, so a request
-    body can never aim a write anywhere else.
+    body can never aim a write anywhere else. A non-empty ``category`` must
+    name a bucket, so the frontmatter only ever holds a value the GUI reads.
     """
     if not SKILL_NAME.match(name):
         return False, "name must be lowercase letters, digits and dashes (max 64)"
     if not description.strip() or "\n" in description:
         return False, "description must be one non-empty line"
+    bucket = skill_buckets.canonical_bucket(category) if category.strip() else ""
+    if bucket is None:
+        return False, "category must name a skill bucket"
     root = _bjorn_skills_root()
     target = (root / name / "SKILL.md").resolve()
     if not target.is_relative_to(root):
         return False, "path escapes the skills root"
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(f"---\nname: {name}\ndescription: {description.strip()}\n---\n\n"
+    extra = f"category: {bucket}\n" if bucket else ""
+    target.write_text(f"---\nname: {name}\ndescription: {description.strip()}\n{extra}---\n\n"
                       f"{body.strip()}\n", encoding="utf-8")
     return True, str(target)

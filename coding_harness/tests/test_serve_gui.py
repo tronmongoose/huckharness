@@ -13,6 +13,7 @@ from pathlib import Path
 from unittest import mock
 
 from coding_harness import cli
+from coding_harness.context import skill_buckets
 from coding_harness.context import skills as skills_mod
 from coding_harness.modes import serve_gui, serve_mode, ui_mode
 from coding_harness.security import audit
@@ -46,6 +47,8 @@ class TestServeGui(unittest.TestCase):
             mock.patch.object(audit, "AUDIT_PATH", tmp_path / "audit.jsonl"),
             mock.patch.object(audit, "ANCHORS_PATH", tmp_path / "anchors.jsonl"),
             mock.patch.object(audit, "META_DIR", tmp_path),
+            mock.patch.object(skill_buckets, "USER_MAP",
+                              tmp_path / "no-config" / "skill_buckets.json"),
             mock.patch("coding_harness.core.session.ollama.chat",
                        side_effect=_fake_ollama_chat),
             mock.patch("coding_harness.tools.registry.sentinel.review",
@@ -176,8 +179,10 @@ class TestServeGui(unittest.TestCase):
     def test_skills_endpoint_lists_the_index(self) -> None:
         with tempfile.TemporaryDirectory() as d, self._fake_skills(Path(d)):
             _, body = _request("GET", self._url("/v1/skills"))
-        self.assertEqual(json.loads(body)["skills"],
-                         [{"name": "tidy", "description": "keep it neat", "source": "project"}])
+        listed = json.loads(body)
+        self.assertEqual(listed["skills"], [{"name": "tidy", "description": "keep it neat",
+                                             "source": "project", "bucket": "Other"}])
+        self.assertEqual(listed["buckets"][-1], {"name": "Other", "count": 1})
 
     def test_skill_turn_carries_the_skill_and_titles_the_session(self) -> None:
         _, create = _request("POST", self._url("/v1/sessions"), body={})
@@ -306,6 +311,15 @@ class TestServeGui(unittest.TestCase):
                 detail = json.loads(body)
                 self.assertEqual((detail["editable"], detail["source"]), (True, "bjorn"))
                 self.assertIn("1. Read the log.", detail["text"])
+                status, _ = _request("POST", self._url("/v1/skills/filed"), body={
+                    "description": "x", "body": "y", "category": "Fleet & ops"})
+                self.assertEqual(status, 200)
+                _, body = _request("GET", self._url("/v1/skills/filed"))
+                self.assertEqual(json.loads(body)["bucket"], "Fleet & ops")
+                for bad in ("Gardening", 7):
+                    status, _ = _request("POST", self._url("/v1/skills/odd"), body={
+                        "description": "x", "body": "y", "category": bad})
+                    self.assertEqual(status, 400, bad)
 
     def test_borrowed_skills_are_read_only_and_names_are_confined(self) -> None:
         with tempfile.TemporaryDirectory() as d:

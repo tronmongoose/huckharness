@@ -21,6 +21,8 @@ export function RoutinesView() {
         <SectionLabel>
           {data.total} scheduled jobs · {data.failed} failing
         </SectionLabel>
+        <span className="label mb-2 border border-rule rounded px-1.5 py-0.5"
+          title="managed with make and launchctl, not from here">read-only</span>
         <span className="flex items-center gap-1.5 ml-auto">
           <span
             className={`inline-block w-1.5 h-1.5 rounded-full ${

@@ -1,15 +1,13 @@
-"""Read-only ops data for the serve UI: heartbeat routines + beads work list.
+"""Read-only ops data for the serve UI: heartbeat routines and models.
 
-Exports: list_routines(), list_work(), list_models(), ollama_status(). Both fail soft — a missing config or
-dead Dolt server degrades to an explicit error/source field, never a 500.
-No mutations; the UI is a window, not a control plane, for these systems.
+Exports: list_routines(), list_models(), ollama_status(). Each fails soft: a
+missing config or dead Ollama degrades to an explicit error field, never a 500.
+The beads work list lives in serve_beads.
 """
 from __future__ import annotations
 
 import json
 import os
-import subprocess
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from urllib.request import urlopen
@@ -40,12 +38,9 @@ except ImportError:  # standalone: heartbeat renderer unavailable
             return f"daily {time_str}"
         return str(sched or "?")
 
-# Optional deployment data: a scheduler's state directory and a beads backup
-# in cwd. Both degrade to empty lists when absent.
+# Optional deployment data: a scheduler's state directory. Absent means an
+# explicit error, not an empty success.
 HEARTBEAT_DIR = Path(os.path.expanduser(os.environ.get("HARNESS_HEARTBEAT_DIR", "~/.config/bjorn/heartbeat")))
-BEADS_BACKUP = Path.cwd() / ".beads" / "backup" / "issues.jsonl"
-BD_TIMEOUT_S = 5
-WORK_LIMIT = 200
 
 
 def _load_yaml_config() -> dict[str, Any]:
@@ -110,58 +105,6 @@ def list_routines() -> dict[str, Any]:
     }
 
 
-def _work_item(issue: dict[str, Any]) -> dict[str, Any]:
-    return {
-        "id": issue.get("id"),
-        "title": issue.get("title"),
-        "status": issue.get("status"),
-        "priority": issue.get("priority"),
-        # The backup JSONL key is issue_type; `type` is a known wrong key
-        # (a silent miss, not an error).
-        "issue_type": issue.get("issue_type"),
-        "updated_at": issue.get("updated_at"),
-    }
-
-
-def _work_from_bd(status: str) -> list[dict[str, Any]] | None:
-    cmd = ["bd", "list", "--json", "--limit", str(WORK_LIMIT), "--no-pager"]
-    if status == "closed":
-        cmd += ["--status", "closed"]
-    try:
-        proc = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=BD_TIMEOUT_S,
-            cwd=str(Path.cwd()),
-        )
-        if proc.returncode != 0:
-            return None
-        data = json.loads(proc.stdout)
-        return [_work_item(i) for i in data] if isinstance(data, list) else None
-    except (OSError, subprocess.TimeoutExpired, json.JSONDecodeError):
-        return None
-
-
-def _work_from_backup(status: str) -> tuple[list[dict[str, Any]], str | None]:
-    items: list[dict[str, Any]] = []
-    age: str | None = None
-    try:
-        mtime = datetime.fromtimestamp(
-            BEADS_BACKUP.stat().st_mtime, tz=timezone.utc,
-        )
-        hours = (datetime.now(timezone.utc) - mtime).total_seconds() / 3600
-        age = f"{hours:.1f}h"
-        with BEADS_BACKUP.open() as f:
-            for line in f:
-                if not line.strip():
-                    continue
-                issue = json.loads(line)
-                if issue.get("status") == status:
-                    items.append(_work_item(issue))
-    except (FileNotFoundError, json.JSONDecodeError, OSError):
-        return [], age
-    items.sort(key=lambda i: (i.get("priority") or 9, i.get("id") or ""))
-    return items[:WORK_LIMIT], age
-
-
 def list_models() -> dict[str, Any]:
     """Models a turn may be pinned to (model agility, sl-pb9m).
 
@@ -216,17 +159,3 @@ def ollama_status() -> dict[str, Any]:
         "until": m.get("expires_at"),
     } for m in loaded if isinstance(m, dict)]
     return {"reachable": True, "resident": resident}
-
-
-def list_work(status: str = "open") -> dict[str, Any]:
-    """Beads issues, live from `bd` with a stale-backup fallback."""
-    if status not in ("open", "closed"):
-        status = "open"
-    live = _work_from_bd(status)
-    if live is not None:
-        return {"items": live, "status": status, "source": "live"}
-    items, age = _work_from_backup(status)
-    return {
-        "items": items, "status": status,
-        "source": "backup", "backup_age": age,
-    }
